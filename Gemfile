@@ -68,3 +68,5 @@ gem 'omniauth-google-oauth2'
 gem "bootstrap", ">= 4.3.1"
 gem 'active_model_serializers'
 gem 'jquery-rails'
+gem 'foreman', '~> 0.82.0'
+gem 'thor', '~> 0.19.1'
