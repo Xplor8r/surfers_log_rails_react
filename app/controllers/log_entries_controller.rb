@@ -31,7 +31,6 @@ class LogEntriesController < ApplicationController
       @log_entries = current_user.log_entries.new(log_entry_params)
       @log_entries.posts.each { |post| post.user_id = current_user.id }
       if @log_entries.save
-        flash[:message] =  "Thread Created Successfully."
         respond_to do |format|
           format.html {redirect_to log_entry_path(@log_entries)}
           format.json {render json: @log_entries}
@@ -46,7 +45,6 @@ class LogEntriesController < ApplicationController
   
     def update
       if @log_entries.update(log_entry_params)
-        flash[:message] =  "Thread Updated Successfully."
         redirect_to Log_entry_path(@log_entries)
       else
         render action: :edit
@@ -61,7 +59,6 @@ class LogEntriesController < ApplicationController
       def b_thread
         @log_entries = LogEntry.friendly.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = "Sorry, something went wrong."
         render action: :index
       end
   
