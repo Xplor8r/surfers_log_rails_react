@@ -1,7 +1,7 @@
 class CreateLogEntries < ActiveRecord::Migration[5.2]
   def change
     create_table :log_entries do |t|
-      t.string :date
+      t.integer :date
       t.string :swell_direction
       t.string :swell_size
       t.string :conditions

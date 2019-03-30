@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_03_07_004504) do
   end
 
   create_table "log_entries", force: :cascade do |t|
-    t.string "date"
+    t.integer "date"
     t.string "swell_direction"
     t.string "swell_size"
     t.string "conditions"
