@@ -1,24 +1,4 @@
-# README
+# Surfers Log version 2.0
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a work in progress. I will be reconstructing Surfers Log using a Ruby on Rails back-end and build a front-end user interface using React.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
