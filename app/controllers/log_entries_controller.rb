@@ -6,20 +6,14 @@ class LogEntriesController < ApplicationController
   
     def index
       @log_entries = LogEntry.sorted.includes(:user, :country, :surf_spot)
-      respond_to do |format|
-        format.html {render :index}
-        format.json {render json: @log_entries}
-      end
+      render json: @log_entries
     end
   
     def show
       @log_entries = LogEntry.all
       @post = Post.new
       @post.user = current_user
-      respond_to do |format|
-        format.html {render :show}
-        format.json {render json: @log_entries}
-      end
+      render json: @log_entries
     end
   
     def new
@@ -31,10 +25,7 @@ class LogEntriesController < ApplicationController
       @log_entries = current_user.log_entries.new(log_entry_params)
       @log_entries.posts.each { |post| post.user_id = current_user.id }
       if @log_entries.save
-        respond_to do |format|
-          format.html {redirect_to log_entry_path(@log_entries)}
-          format.json {render json: @log_entries}
-        end
+      render json: @log_entries
       else
         render json: @log_entries, status: 406
       end
