@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2019_03_07_004504) do
     t.integer "country_id", null: false
     t.integer "user_id"
     t.integer "surf_spot_id", null: false
-    t.string "slug", null: false
     t.integer "posts_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

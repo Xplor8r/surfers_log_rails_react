@@ -1,6 +1,4 @@
 class LogEntry < ApplicationRecord
-    extend FriendlyId
-    friendly_id :surf_spot, use: :slugged
     belongs_to :surf_spot
     belongs_to :country
     belongs_to :user

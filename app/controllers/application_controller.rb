@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::API
     helper_method :is_admin?
     helper_method :is_admin_or_author?
-    protect_from_forgery with: :exception
     helper_method :current_user
 
     def is_admin_or_author?(object)
