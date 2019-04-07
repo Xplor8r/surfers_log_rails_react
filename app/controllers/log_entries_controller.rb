@@ -47,8 +47,8 @@ class LogEntriesController < ApplicationController
   
     private
   
-      def b_thread
-        @log_entries = LogEntry.friendly.find(params[:id])
+      def log_entry
+        @log_entries = LogEntry.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         render action: :index
       end
