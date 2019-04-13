@@ -5,7 +5,7 @@ class CountriesController < ApplicationController
     def index
       @log_entries = LogEntry.where(country: @country) if @country.present?
       @log_entries = @log_entries.sorted.includes(:user, :country)
-      render "log_entries/index"
+      render json: @log_entries
     end
  
     private
@@ -14,4 +14,5 @@ class CountriesController < ApplicationController
       rescue ActiveRecord::RecordNotFound
         flash[:error] = "Sorry, something went wrong."
         redirect_to root_path
+      end
 end

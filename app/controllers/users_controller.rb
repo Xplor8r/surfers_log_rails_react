@@ -3,10 +3,7 @@ class UsersController < ApplicationController
 
     def show
         @log_entries = LogEntry.where(user: @user).sorted.includes(:user, :country, :surf_spot)
-        respond_to do |format|
-            format.html {render :show}
-            format.json {render json: @user}
-        end
+        render json: @user
     end
   
     def states

@@ -5,7 +5,7 @@ class SurfSpotsController < ApplicationController
     def index
       @log_entries = LogEntry.where(surf_spot: @surf_spot) if @surf_spot.present?
       @log_entries = @log_entries.sorted.includes(:user, :surf_spot)
-      render "log_entries/index"
+      render json: @log_entries
     end
  
     private
@@ -14,4 +14,5 @@ class SurfSpotsController < ApplicationController
       rescue ActiveRecord::RecordNotFound
         flash[:error] = "Sorry, something went wrong."
         redirect_to root_path
+      end
 end
