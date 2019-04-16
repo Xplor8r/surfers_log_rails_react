@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_03_07_004504) do
   create_table "surf_spots", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
+    t.integer "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
