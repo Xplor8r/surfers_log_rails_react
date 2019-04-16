@@ -5,7 +5,7 @@ class CountriesController < ApplicationController
     def index
       @log_entries = LogEntry.where(country: @country) if @country.present?
       @log_entries = @log_entries.sorted.includes(:user, :country)
-      render json: @log_entries
+      render json: @log_entries, include: ['user', 'surf_spot.name', 'country.name', 'posts.user.name', 'posts.log_entry_id']
     end
  
     private
