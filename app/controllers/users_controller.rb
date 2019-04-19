@@ -3,28 +3,26 @@ class UsersController < ApplicationController
 
     def show
         @log_entries = LogEntry.where(user: @user).sorted.includes(:user, :country, :surf_spot)
-        render json: @user
+        render json: @log_entries, include: ['user', 'surf_spot.name', 'country.name', 'posts.user.name', 'posts.log_entry_id']
     end
-  
-    def states
-    end
-  
+
     def index
-        render "log_entries/index"
+        render json: @log_entries
     end
   
     def new
         @user = User.new
+        render json: @user
     end
   
     def create
         @user = User.create(user_params)
+        @user.user_id = current_user.id
         if @user.save
             session[:user_id] = @user.id
-            redirect_to user_path(@user)
+            render json: @user, status: 200
         else
-            flash[:error] = "You must give a valid name, email and password."
-            redirect_to new_user_path
+            render json: {message: @user.errors}, status: 400 
         end
     end
   
