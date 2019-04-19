@@ -1,49 +1,48 @@
 class PostsController < ApplicationController
     before_action :current_user
-    before_action :Log_entry
-    before_action :post, only: [:edit, :update]
+    before_action :log_entry
+    before_action :post, only: [:edit, :update, :destroy, :show]
     before_action :require_admin_or_author_for_post!, only: [:edit, :update]
   
     def index
-        render json: @Log_entry
+        render json: @log_entry.posts
     end
-  
+    
+    def Show
+        render json: @post
+    end
+
     def create
-        @post = @Log_entry.posts.new(post_params)
+        @post = LogEntry.posts.new(post_params)
         @post.user_id = current_user.id
         if @post.save
-            respond_to do |format|
-            format.html {redirect_to log_entry_path(@Log_entry, anchor: "post_#{@post.id}")}
-            format.json {render json: @post}
-            end
+            render json: @post, status: 200
         else
-            render template: "log_entrys/show"
+            render json: {message: @post.errors}, status: 400 
         end
     end
-  
-    def edit
-    end
-  
+
     def update
-        if @post.update(post_params)
-            redirect_to log_entry_path(@Log_entry)
-        else
-            render action: :edit
-        end
+        @post.update(post_params)
+        head :no_content
+    end
+
+    def destroy
+        @post.destroy
+        head :no_content
     end
   
     private
   
-        def Log_entry
-            @Log_entry = LogEntry.friendly.find(params[:log_entry_id])
+        def log_entry
+            @log_entry = LogEntry.friendly.find(params[:log_entry_id])
         rescue ActiveRecord::RecordNotFound
-            flash[:error] = "Sorry, something went wrong."
             redirect_to root_path 
         end
     
         def post
             if is_admin?
-                @post = @Log_entry.posts.find(params[:id])
+                @post = log_entry.posts.find(params[:id])
             else
                 @post = current_user.posts.find(params[:id])
             end
