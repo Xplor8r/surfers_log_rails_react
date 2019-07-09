@@ -2,6 +2,7 @@ class LogEntrySerializer < ActiveModel::Serializer
   attributes :id,
     :date,
     :time,
+    :rating,
     :swell_1_size,
     :swell_1_direction,
     :swell_2_size,
