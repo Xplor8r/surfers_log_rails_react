@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_07_09_032428) do
   create_table "log_entries", force: :cascade do |t|
     t.integer "date"
     t.integer "time"
+    t.integer "rating"
     t.string "swell_1_direction"
     t.integer "swell_1_size"
     t.string "swell_2_direction"

@@ -3,6 +3,7 @@ class CreateLogEntries < ActiveRecord::Migration[5.2]
     create_table :log_entries do |t|
       t.integer :date
       t.integer :time
+      t.integer :rating
       t.string :swell_1_direction
       t.integer :swell_1_size
       t.string :swell_2_direction
