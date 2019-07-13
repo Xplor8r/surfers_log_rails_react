@@ -7,7 +7,8 @@ class UsersController < ApplicationController
     end
 
     def index
-        render json: @log_entries
+        @users = User.all
+        render json: @users
     end
   
     def new
