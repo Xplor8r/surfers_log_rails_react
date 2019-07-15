@@ -5,7 +5,7 @@ class LogEntriesController < ApplicationController
   
   
     def index
-      @log_entries = LogEntry.sorted.includes(:user, :country, :surf_spot)
+      @log_entries = LogEntry.sorted.includes(:user, :country, :surf_spot).where(public: true)
       render json: @log_entries, include: ['user', 'surf_spot.name', 'country.name', 'posts.user.name', 'posts.log_entry_id']
     end
   

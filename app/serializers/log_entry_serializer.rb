@@ -3,6 +3,7 @@ class LogEntrySerializer < ActiveModel::Serializer
     :date,
     :time,
     :rating,
+    :public,
     :swell_1_size,
     :swell_1_direction,
     :swell_2_size,
