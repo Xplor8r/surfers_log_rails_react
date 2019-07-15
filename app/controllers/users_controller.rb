@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        binding.pry
+        # binding.pry
         render json: @user
     end
 

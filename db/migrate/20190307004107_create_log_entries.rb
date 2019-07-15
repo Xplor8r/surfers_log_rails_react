@@ -2,7 +2,7 @@ class CreateLogEntries < ActiveRecord::Migration[5.2]
   def change
     create_table :log_entries do |t|
       t.integer :date
-      t.integer :time
+      t.string :time
       t.boolean :public, null:false
       t.integer :rating
       t.string :swell_1_direction
