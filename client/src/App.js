@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 
 const LogEntry = ({logEntry}) => {
   return (
     <li>
-      <h1>{logEntry.surf_spot.name}</h1>
-      <h2>{logEntry.country.name}</h2>
-      <h3>By {logEntry.user.name}</h3>
+      <h1>{logEntry.surf_spot.name}, {logEntry.country.name}</h1>
+      <h2>By {logEntry.user.name}</h2>
+      {logEntry.time && logEntry.date && <p>{logEntry.date} {logEntry.time}</p>}
       <p>{logEntry.posts[0].content}</p>
       <p>Comments: {logEntry.posts.length - 1}</p>
-      <p>Rating: {logEntry.rating}</p>
-      <p>Date: {logEntry.time} {logEntry.date}</p>
+      {logEntry.rating  && <p>Rating: {logEntry.rating}</p>}
       <img src={logEntry.image_url}/>
-      <p>Swell: {logEntry.swell_1_direction} {logEntry.swell_1_size}</p>
-      <p>Wave Count: {logEntry.wave_count}</p>
-      <p>Wind: {logEntry.wind_direction} {logEntry.wind_speed}</p>
+      { logEntry.swell_1_size && logEntry.swell_1_direction && <p>Swell: {logEntry.swell_1_size} ft @ {logEntry.swell_1_direction} sec</p>}
+      {logEntry.wave_count && <p>Wave Count: {logEntry.wave_count}</p>}
+      {logEntry.wind_direction && <p>Wind: {logEntry.wind_direction} @ {logEntry.wind_speed} mph </p>}
     </li>
   )
 }
@@ -46,11 +45,15 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        <ul>
-          {logEntries.map((logEntry) => (
-            <LogEntry key={logEntry.id} logEntry={logEntry} />
-          ))}
-        </ul>
+        <div>
+          {logEntries.length === 0 ?
+          <img src={logo} className="App-logo" alt="logo" /> :
+          <ul>
+            {logEntries.map((logEntry) => (
+              <LogEntry key={logEntry.id} logEntry={logEntry} />
+            ))}
+          </ul>}
+        </div>
         </header>
       </div>
     );
