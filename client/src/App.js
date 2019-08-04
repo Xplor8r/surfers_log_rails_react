@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Moment from 'react-moment'
+import 'moment-timezone';
 
 const LogEntry = ({logEntry}) => {
   return (
     <li>
       <h1>{logEntry.surf_spot.name}, {logEntry.country.name}</h1>
       <h2>By {logEntry.user.name}</h2>
-      {logEntry.time && logEntry.date && <p>{logEntry.date} {logEntry.time}</p>}
+      {logEntry.date && <p><Moment parse="YYYYMMDD HH:mm">{logEntry.date} {logEntry.time}</Moment></p>}
       <p>{logEntry.posts[0].content}</p>
       <p>Comments: {logEntry.posts.length - 1}</p>
       {logEntry.rating  && <p>Rating: {logEntry.rating}</p>}
