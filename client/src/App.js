@@ -16,7 +16,7 @@ const LogEntry = ({logEntry}) => {
         <p><Moment parse="YYYYMMDD" format="MM/DD/YYYY">{logEntry.date}</Moment></p>
       }
       {logEntry.rating  && <StarRatingComponent starCount={5} value={logEntry.rating}/>}
-      { logEntry.swell_1_size && logEntry.swell_1_direction && <p>Swell: {logEntry.swell_1_size} ft @ {logEntry.swell_1_direction} sec</p>}
+      { logEntry.swell_1_size && logEntry.swell_1_direction && <p>Swell: {logEntry.swell_1_size} ft {logEntry.swell_1_direction}</p>}
       {logEntry.wave_count && <p>Wave Count: {logEntry.wave_count}</p>}
       {logEntry.wind_direction && <p>Wind: {logEntry.wind_direction} @ {logEntry.wind_speed} mph </p>}
       <p><Truncate lines={2} width={600}>{logEntry.posts[0].content}</Truncate></p>
