@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 import LogEntry from './Components/logEntry'
 import 'moment-timezone';
-
+import { Container, Row } from 'reactstrap';
 
 class App extends Component {
   componentWillMount(){
@@ -17,15 +17,15 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        <div>
+        <Container className="content">
           {dataFetch ?
           <img src={logo} className="App-logo" alt="logo" /> :
-          <div>
+          <Row className="justify-content-sm-center">
             {logEntries.map((logEntry) => (
               <LogEntry key={logEntry.id} logEntry={logEntry} />
             ))}
-          </div>}
-        </div>
+          </Row>}
+        </Container>
         </header>
       </div>
     );
