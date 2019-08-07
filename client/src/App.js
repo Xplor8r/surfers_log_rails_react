@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {fetchLogEntryData} from './Actions/logEntries'
+import {fetchLogEntryData} from './Actions/logEntries';
 import logo from './logo.svg';
 import './App.css';
-import LogEntry from './Components/logEntry'
+import LogEntry from './Components/logEntry';
 import 'moment-timezone';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
+import Navbar from './Components/navbar';
+import SideBar from './Components/sidebar';
 
 class App extends Component {
   componentWillMount(){
@@ -16,14 +18,18 @@ class App extends Component {
     let logEntries = this.props.logEntryData
     return (
       <div className="App">
+        <Navbar />
         <header className="App-header">
         <Container className="content">
           {dataFetch ?
           <img src={logo} className="App-logo" alt="logo" /> :
-          <Row className="justify-content-sm-center">
-            {logEntries.map((logEntry) => (
-              <LogEntry key={logEntry.id} logEntry={logEntry} />
-            ))}
+          <Row >
+            <SideBar />
+            <Col xs="9">
+              {logEntries.map((logEntry) => (
+                <LogEntry key={logEntry.id} logEntry={logEntry} />
+              ))}
+            </Col>
           </Row>}
         </Container>
         </header>
