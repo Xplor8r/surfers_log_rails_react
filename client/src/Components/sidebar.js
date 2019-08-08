@@ -1,31 +1,34 @@
 import React from 'react';
 import { Card, CardTitle, Col, ListGroup, ListGroupItem, Badge }  from 'reactstrap';
 
-const SideBar = () => {
+const SideBar = ({countries}) => {
+    let topList = countries.filter(a=>a.log_entries.length > 0);
+    let alphaList = countries.sort((a,b)=> a.name.localeCompare(b.name));
+
     return (
         <Col xs="3">
-            <Card style={{backgroundColor: 'grey', margin: '.5rem', height: '100%'}}>
+            <Card style={{backgroundColor: 'grey', margin: '.5rem'}}>
                 <CardTitle>
-                    <h1>Side Bar</h1>
+                    <h1>Countries</h1>
                     <ListGroup>
-                        <ListGroupItem 
-                            style={{backgroundColor: 'grey'}}
-                            className="justify-content-between"
-                        >
-                            USA <Badge pill>13</Badge>
-                        </ListGroupItem>
-                        <ListGroupItem 
-                            style={{backgroundColor: 'grey'}}
-                            className="justify-content-between"
-                        >
-                            Australia <Badge pill>2</Badge>
-                        </ListGroupItem>
-                        <ListGroupItem
-                            style={{backgroundColor: 'grey'}}
-                            className="justify-content-between"
-                        >
-                            Tahiti <Badge pill>1</Badge>
-                        </ListGroupItem>
+                        {topList.map((country) => (
+                            <ListGroupItem 
+                                key={country.id}
+                                style={{backgroundColor: 'grey'}}
+                                className="justify-content-between"
+                            >
+                            {country.name} <Badge pill>{country.log_entries.length}</Badge>
+                            </ListGroupItem>
+                        ))}
+                        {alphaList.map((country) => (
+                            <ListGroupItem 
+                                key={country.id}
+                                style={{backgroundColor: 'grey'}}
+                                className="justify-content-between"
+                            >
+                                {country.name}
+                            </ListGroupItem>
+                        ))}
                     </ListGroup>
                 </CardTitle>
             </Card>
