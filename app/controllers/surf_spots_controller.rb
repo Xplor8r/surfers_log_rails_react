@@ -1,11 +1,16 @@
 class SurfSpotsController < ApplicationController
-    before_action :surf_spot
+    before_action :surf_spot, only: [:index]
     before_action :current_user
     
     def index
       @log_entries = LogEntry.where(surf_spot: @surf_spot) if @surf_spot.present?
       @log_entries = @log_entries.sorted.includes(:user, :surf_spot)
       render json: @log_entries, include: ['user', 'surf_spot.name', 'country.name', 'posts.user.name', 'posts.log_entry_id']
+    end
+
+    def list
+      @list = SurfSpot.all
+      render json: @list
     end
  
     private

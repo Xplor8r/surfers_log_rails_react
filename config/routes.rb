@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :users
     resources :log_entries, path: :log_entries do
       collection do
+        get "countries", to: "countries#list"
+        get "surf_spots", to: "surf_spots#list"
         get "country/:id", to: "countries#index", as: :country
         get "surf_spot/:id", to: "surf_spots#index", as: :surf_spot
       end
