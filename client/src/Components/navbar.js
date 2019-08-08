@@ -1,8 +1,25 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
-    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-
+    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Media } from 'reactstrap';
+import surfLogo from '../images/surfers_log_logo.jpg'
 export default class Example extends React.Component {
+//   // When the user scrolls the page, execute myFunction 
+// window.onscroll = function() {myFunction()};
+
+// // Get the navbar
+// var navbar = document.getElementById("navbar");
+
+// // Get the offset position of the navbar
+// var sticky = navbar.offsetTop;
+
+// // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+// function myFunction() {
+//   if (window.pageYOffset >= sticky) {
+//     navbar.classList.add("sticky")
+//   } else {
+//     navbar.classList.remove("sticky");
+//   }
+// }
   constructor(props) {
     super(props);
 
@@ -20,7 +37,9 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Surfers Log</NavbarBrand>
+          <NavbarBrand href="/">
+            <Media src={surfLogo} height={60} alt="Surfers Log Logo" />
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

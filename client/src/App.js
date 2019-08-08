@@ -6,10 +6,10 @@ import logo from './logo.svg';
 import './App.css';
 import LogEntry from './Components/logEntry';
 import 'moment-timezone';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Media } from 'reactstrap';
 import Navbar from './Components/navbar';
 import SideBar from './Components/sidebar';
-
+import header from './images/surfers-log-header.gif'
 class App extends Component {
   componentWillMount(){
     this.props.fetchLogEntryData();
@@ -21,6 +21,7 @@ class App extends Component {
     let countries = this.props.countryData
     return (
       <div className="App">
+        <Media src={header} width={'100%'} alt="Surfers Log" />
         <Navbar />
         <header className="App-header">
         <Container className="content">
