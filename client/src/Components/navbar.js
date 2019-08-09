@@ -3,40 +3,39 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
     UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
 export default class Example extends React.Component {
-//   // When the user scrolls the page, execute myFunction 
-// window.onscroll = function() {myFunction()};
-
-// // Get the navbar
-// var navbar = document.getElementById("navbar");
-
-// // Get the offset position of the navbar
-// var sticky = navbar.offsetTop;
-
-// // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-// function myFunction() {
-//   if (window.pageYOffset >= sticky) {
-//     navbar.classList.add("sticky")
-//   } else {
-//     navbar.classList.remove("sticky");
-//   }
-// }
   constructor(props) {
     super(props);
-
+    // this.handleScroll = this.handleScroll.bind(this);
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
     };
+
   }
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+  // handleScroll() {
+  //   this.setState({scroll: window.scrollY});
+  // }
+
+  // componentDidMount() {
+  //   const el = document.querySelector('nav');
+  //   this.setState({top: el.offsetTop, height: el.offsetHeight});
+  //   window.addEventListener('scroll', this.handleScroll);
+  // }
+
+  // componentDidUpdate() {
+    // const app = document.getElementsByClassName('App');
+    // this.state.scroll > this.state.top ? 
+    //     app.style.paddingTop = `${this.state.height}px` :
+    //     app.style.paddingTop = 0;
+  // }
   render() {
     return (
-      <div>
-        <Navbar color="light" light expand="md">
+        <Navbar color="light" light expand="md" className={this.state.scroll > this.state.top ? "fixed-nav": ""}>
           <NavbarBrand href="/">
             <Media src={surfLogo} height={60} alt="Surfers Log Logo" />
           </NavbarBrand>
@@ -69,7 +68,6 @@ export default class Example extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
-      </div>
     );
   }
 }
