@@ -8,7 +8,7 @@ import { Card, CardImg, CardText, CardBody,
 const LogEntry = ({logEntry}) => {
     return (
       <Card 
-        style={{backgroundColor: 'grey', margin: '.5rem'}}
+        style={{ margin: '.5rem'}}
         key={logEntry.id}
       >
         <CardBody>

@@ -7,14 +7,13 @@ const SideBar = ({countries}) => {
 
     return (
         <Col xs="3">
-            <Card style={{backgroundColor: 'grey', margin: '.5rem'}}>
+            <Card style={{ margin: '.5rem'}}>
                 <CardTitle>
                     <h1>Countries</h1>
                     <ListGroup>
                         {topList.map((country) => (
                             <ListGroupItem 
                                 key={country.id}
-                                style={{backgroundColor: 'grey'}}
                                 className="justify-content-between"
                             >
                             {country.name} <Badge pill>{country.log_entries.length}</Badge>
@@ -23,7 +22,6 @@ const SideBar = ({countries}) => {
                         {alphaList.map((country) => (
                             <ListGroupItem 
                                 key={country.id}
-                                style={{backgroundColor: 'grey'}}
                                 className="justify-content-between"
                             >
                                 {country.name}
