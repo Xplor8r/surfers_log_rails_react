@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {fetchLogEntryData} from './Actions/logEntries';
 import {fetchCountryData} from './Actions/countries';
-import logo from './logo.svg';
 import './App.css';
 import LogEntry from './Components/logEntry';
 import 'moment-timezone';
-import { Container, Row, Col, Media } from 'reactstrap';
+import { Container, Row, Col, Media, Spinner } from 'reactstrap';
 import Navbar from './Components/navbar';
 import SideBar from './Components/sidebar';
 import header from './images/surfers-log-header.gif'
+
 class App extends Component {
   componentWillMount(){
     this.props.fetchLogEntryData();
     this.props.fetchCountryData();
+  }
+  componentDidMount() {
+    window.scrollTo(0, 0)
   }
   render() {
     let dataFetch = this.props.dataFetch
@@ -26,7 +29,14 @@ class App extends Component {
         <header className="App-header">
         <Container className="content">
           {dataFetch ?
-          <img src={logo} className="App-logo" alt="logo" /> :
+          <Spinner 
+            style={{
+              backgroundColor: "#7cbcc6",
+              width: '30rem',
+              height: '30rem' 
+            }}
+            type="grow"
+          />:
           <Row >
             <SideBar countries={countries}/>
             <Col xs="9">

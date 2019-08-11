@@ -20,7 +20,7 @@ const SideBar = ({countries}) => {
                             >
                                 <Nav>
                                 <UncontrolledDropdown nav inNavbar>
-                                        <DropdownToggle nav caret>
+                                        <DropdownToggle className="coral" nav caret>
                                             <Badge pill>{country.log_entries.length}</Badge>
                                             <Truncate lines={1} width={150}> {country.name}</Truncate>                                  
                                         </DropdownToggle>
@@ -45,7 +45,7 @@ const SideBar = ({countries}) => {
                             >     
                                 <Nav>
                                     <UncontrolledDropdown nav inNavbar>
-                                        <DropdownToggle nav caret>
+                                        <DropdownToggle className="coral" nav caret>
                                         <Truncate lines={1} width={150}>
                                             {country.name}
                                         </Truncate>
