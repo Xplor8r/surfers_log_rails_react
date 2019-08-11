@@ -1,6 +1,6 @@
 import React from 'react';
 import Truncate from 'react-truncate';
-import { Card, CardTitle, Col, ListGroup, ListGroupItem, Badge, Nav,
+import { Card, CardText, Col, ListGroup, ListGroupItem, Badge, Nav,
     UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem }  from 'reactstrap';
 
 const SideBar = ({countries}) => {
@@ -8,9 +8,9 @@ const SideBar = ({countries}) => {
     let alphaList = countries.sort((a,b)=> a.name.localeCompare(b.name));
 
     return (
-        <Col xs="4" style={{ padding: '0px'}}>
+        <Col xs="3" style={{ padding: '0px'}}>
             <Card style={{ margin: '.5rem'}}>
-                <CardTitle>
+                <CardText>
                     <h1>Countries</h1>
                     <ListGroup>
                         {topList.map((country) => (
@@ -50,10 +50,9 @@ const SideBar = ({countries}) => {
                                             {country.name}
                                         </DropdownToggle>
                                         <DropdownMenu left="true">
-                                            <DropdownItem header>Surf Spots</DropdownItem>
+                                            <DropdownItem header>No Log Entries</DropdownItem>
                                             <DropdownItem divider />
                                             <DropdownItem>
-                                                No Log Entries<br/>
                                                 Create a log Entry
                                             </DropdownItem>
                                         </DropdownMenu>
@@ -63,7 +62,7 @@ const SideBar = ({countries}) => {
                             </ListGroupItem>
                         ))}
                     </ListGroup>
-                </CardTitle>
+                </CardText>
             </Card>
         </Col>
     )

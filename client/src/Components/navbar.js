@@ -7,6 +7,7 @@ export default class Example extends React.Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
       isOpen: false
     };
@@ -17,21 +18,24 @@ export default class Example extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
-
+  handleClick = (e)=> {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+  }
   render() {
     return (
         <Navbar sticky="top" style={{backgroundColor: "#7cbcc6"}} light expand="md" className={this.state.scroll > this.state.top ? "fixed-nav": ""}>
-          <NavbarBrand href="/">
+          <NavbarBrand href="/" onClick={(e) => this.handleClick(e)}>
             <Media src={surfLogo} height={60} alt="Surfers Log Logo" />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/">Link 1</NavLink>
+                <NavLink href="/">Log In</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">Link 2</NavLink>
+                <NavLink href="/">Sign Up</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
