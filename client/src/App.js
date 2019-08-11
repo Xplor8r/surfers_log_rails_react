@@ -39,7 +39,7 @@ class App extends Component {
           />:
           <Row >
             <SideBar countries={countries}/>
-            <Col xs="9">
+            <Col xs="8" style={{ padding: '0px'}}>
               {logEntries.map((logEntry) => (
                 <LogEntry key={logEntry.id} logEntry={logEntry} />
               ))}

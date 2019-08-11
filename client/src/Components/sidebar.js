@@ -8,7 +8,7 @@ const SideBar = ({countries}) => {
     let alphaList = countries.sort((a,b)=> a.name.localeCompare(b.name));
 
     return (
-        <Col xs="3">
+        <Col xs="4" style={{ padding: '0px'}}>
             <Card style={{ margin: '.5rem'}}>
                 <CardTitle>
                     <h1>Countries</h1>
@@ -21,10 +21,11 @@ const SideBar = ({countries}) => {
                                 <Nav>
                                 <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle className="coral" nav caret>
-                                            <Badge pill>{country.log_entries.length}</Badge>
-                                            <Truncate lines={1} width={150}> {country.name}</Truncate>                                  
+                                            {country.name} <Badge pill>{country.log_entries.length} Log Entries</Badge>                          
                                         </DropdownToggle>
                                         <DropdownMenu left="true">
+                                            <DropdownItem header>Surf Spots</DropdownItem>
+                                            <DropdownItem divider />
                                             {country.surf_spots.map((spot)=> (
                                                 <DropdownItem key={spot.id}>
                                                     <Truncate lines={1} width={150}>
@@ -46,11 +47,11 @@ const SideBar = ({countries}) => {
                                 <Nav>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle className="coral" nav caret>
-                                        <Truncate lines={1} width={150}>
                                             {country.name}
-                                        </Truncate>
                                         </DropdownToggle>
-                                        <DropdownMenu left="true" style={{padding: '.5rem'}}>
+                                        <DropdownMenu left="true">
+                                            <DropdownItem header>Surf Spots</DropdownItem>
+                                            <DropdownItem divider />
                                             <DropdownItem>
                                                 No Log Entries<br/>
                                                 Create a log Entry
