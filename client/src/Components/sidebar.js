@@ -1,5 +1,7 @@
 import React from 'react';
-import { Card, CardTitle, Col, ListGroup, ListGroupItem, Badge }  from 'reactstrap';
+import Truncate from 'react-truncate';
+import { Card, CardTitle, Col, ListGroup, ListGroupItem, Badge, Nav,
+    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem }  from 'reactstrap';
 
 const SideBar = ({countries}) => {
     let topList = countries.filter(a=>a.log_entries.length > 0);
@@ -14,17 +16,49 @@ const SideBar = ({countries}) => {
                         {topList.map((country) => (
                             <ListGroupItem 
                                 key={country.id}
-                                className="justify-content-between"
+                                className="justify-content-center"
                             >
-                            {country.name} <Badge pill>{country.log_entries.length}</Badge>
+                                <Nav>
+                                <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle nav caret>
+                                            <Badge pill>{country.log_entries.length}</Badge>
+                                            <Truncate lines={1} width={150}> {country.name}</Truncate>                                  
+                                        </DropdownToggle>
+                                        <DropdownMenu left="true">
+                                            {country.surf_spots.map((spot)=> (
+                                                <DropdownItem key={spot.id}>
+                                                    <Truncate lines={1} width={150}>
+                                                        {spot.name}
+                                                    </Truncate>
+                                                </DropdownItem>
+                                            ))}
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </Nav>
+        
                             </ListGroupItem>
                         ))}
                         {alphaList.map((country) => (
                             <ListGroupItem 
                                 key={country.id}
-                                className="justify-content-between"
-                            >
-                                {country.name}
+                                className="justify-content-center"
+                            >     
+                                <Nav>
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle nav caret>
+                                        <Truncate lines={1} width={150}>
+                                            {country.name}
+                                        </Truncate>
+                                        </DropdownToggle>
+                                        <DropdownMenu left="true" style={{padding: '.5rem'}}>
+                                            <DropdownItem>
+                                                No Log Entries<br/>
+                                                Create a log Entry
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </Nav>
+
                             </ListGroupItem>
                         ))}
                     </ListGroup>

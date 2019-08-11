@@ -20,7 +20,7 @@ export default class Example extends React.Component {
 
   render() {
     return (
-        <Navbar color="light" light expand="md" className={this.state.scroll > this.state.top ? "fixed-nav": ""}>
+        <Navbar sticky="top" color="light" light expand="md" className={this.state.scroll > this.state.top ? "fixed-nav": ""}>
           <NavbarBrand href="/">
             <Media src={surfLogo} height={60} alt="Surfers Log Logo" />
           </NavbarBrand>
