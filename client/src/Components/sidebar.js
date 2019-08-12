@@ -8,9 +8,9 @@ const SideBar = ({countries}) => {
 
     return (
         <Col xs="3" style={{ padding: '0px'}}>
-            <Card style={{ margin: '.5rem'}}>
+            <Card style={{ margin: '2rem .5rem 1rem .5rem'}}>
                 <CardText>
-                    <h1>Countries</h1>
+                    <h2>Countries</h2>
                     <ListGroup>
                         {topList.map((country) => (
                             <ListGroupItem 
