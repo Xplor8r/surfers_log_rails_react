@@ -9,7 +9,7 @@ class CountriesController < ApplicationController
     end
 
     def list
-      @list = Country.all
+      @list = Country.all.sorted
       render json: @list
     end
  

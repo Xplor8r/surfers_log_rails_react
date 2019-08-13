@@ -9,8 +9,8 @@ class SurfSpotsController < ApplicationController
     end
 
     def list
-      @list = SurfSpot.all
-      render json: @list
+      @list = SurfSpot.all.sorted
+      render json: @list, include: ['log_entries.user.name']
     end
  
     private
