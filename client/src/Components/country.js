@@ -10,7 +10,7 @@ const Country = ({country}) => {
                 <DropdownToggle className="coral" nav caret>
                     {country.name} {' '}
                     {country.log_entries.length > 0 &&
-                        <Badge pill>{country.log_entries.length} Log Entries</Badge>}             
+                        <Badge pill>{country.log_entries.length}</Badge>}             
                 </DropdownToggle>
                 <DropdownMenu left="true">
                     {country.log_entries.length > 0 ? 
