@@ -2,6 +2,8 @@ import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
     UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
+// import Country from './country';
+// import SurfSpot from './surfSpot';
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -23,6 +25,8 @@ export default class Example extends React.Component {
     window.scrollTo(0, 0);
   }
   render() {
+    let countriesWithLogEntries = this.props.countries.filter(a=>a.log_entries.length > 0);
+    let surfSpotsWithLogEntries = this.props.surfSpots.filter(a=>a.log_entries.length > 0);
     return (
         <Navbar sticky="top" style={{backgroundColor: "#7cbcc6"}} light expand="md" className={this.state.scroll > this.state.top ? "fixed-nav": ""}>
           <NavbarBrand href="/" onClick={(e) => this.handleClick(e)}>
@@ -39,19 +43,33 @@ export default class Example extends React.Component {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Dropdown
-                </DropdownToggle>
+                  Countries
+                </DropdownToggle>           
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
+                  {countriesWithLogEntries.map((country) => (
+                    <DropdownItem
+                      key={country.id}
+                      className="justify-content-center"
+                    >
+                      {country.name}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Surf Spots
+                </DropdownToggle>
+            
+                <DropdownMenu right>
+                  {surfSpotsWithLogEntries.map((surfSpot) => (
+                    <DropdownItem
+                      key={surfSpot.id}
+                      className="justify-content-center"
+                    >
+                      {surfSpot.name}
+                    </DropdownItem>
+                  ))}
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

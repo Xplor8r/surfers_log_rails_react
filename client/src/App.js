@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <Media src={header} width={'100%'} alt="Surfers Log" />
-        <Navbar />
+        <Navbar countries={countries} surfSpots={surfSpots}/>
         <header className="App-header">
         <Container className="content">
           {dataFetch ?

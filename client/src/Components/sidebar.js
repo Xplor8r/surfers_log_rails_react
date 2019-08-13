@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, CardImg, CardTitle, CardText, Col, ListGroup, ListGroupItem }  from 'reactstrap';
+import { Nav, Card, CardBody, CardImg, CardTitle, CardText, Col, ListGroup, ListGroupItem }  from 'reactstrap';
 import Country from './country';
 import SurfSpot from './surfSpot';
 import header from '../images/surfers-log-header.gif'
@@ -21,7 +21,7 @@ const SideBar = ({countries, surfSpots}) => {
                                 key={surfSpot.id}
                                 className="justify-content-center"
                             >
-                                <SurfSpot surfSpot={surfSpot}/>
+                                <Nav><SurfSpot surfSpot={surfSpot}/></Nav>
                             </ListGroupItem>
                         ))}
                     </ListGroup>
@@ -38,7 +38,7 @@ const SideBar = ({countries, surfSpots}) => {
                                 key={country.id}
                                 className="justify-content-center"
                             >
-                                <Country country={country}/>
+                                <Nav><Country country={country}/></Nav>
                             </ListGroupItem>
                         ))}
                     </ListGroup>
