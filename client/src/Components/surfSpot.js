@@ -1,36 +1,31 @@
 import React from 'react';
-import { Badge, Nav, UncontrolledDropdown, DropdownToggle,
+import { Badge, UncontrolledDropdown, DropdownToggle,
     DropdownMenu, DropdownItem } from 'reactstrap';
 import Truncate from 'react-truncate';
 
 const SurfSpot = ({surfSpot}) => {
+    let surfers = [];
+    surfSpot.log_entries.forEach((logEntry)=>surfers.push(logEntry.user.name));
+
     return (
-        <Nav>
             <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle className="coral" nav caret>
                     {surfSpot.name} {' '}
-                    {surfSpot.log_entries.length > 0 &&
-                        <Badge pill>{surfSpot.log_entries.length}</Badge>}             
+                    <Badge pill>{surfSpot.log_entries.length}</Badge>          
                 </DropdownToggle>
                 <DropdownMenu left="true">
-                    {surfSpot.log_entries.length > 0 ? 
-                        <DropdownItem header>Surfers</DropdownItem>:
-                        <DropdownItem header>No Log Entries</DropdownItem>
-                    }              
+                    <DropdownItem>Log Entries</DropdownItem>
                     <DropdownItem divider />
-                    {surfSpot.log_entries.length > 0 ? 
-                    surfSpot.log_entries.map((logEntry)=> (
-                        <DropdownItem key={logEntry.id}>
+                    <DropdownItem header>Surfers</DropdownItem>            
+                    {[...new Set(surfers)].map((surfer, i)=> (
+                        <DropdownItem key={i}>
                             <Truncate lines={1} width={150}>
-                                {logEntry.user.name}
+                                {surfer}
                             </Truncate>
                         </DropdownItem>
-                    )):
-                        <DropdownItem>Create a log Entry</DropdownItem>
-                    }
+                    ))}
                 </DropdownMenu>
             </UncontrolledDropdown>
-        </Nav>
     )
 }
 
