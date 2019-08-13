@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {fetchLogEntryData} from './Actions/logEntries';
-import {fetchCountryData} from './Actions/countries';
+import { fetchLogEntryData } from './Actions/logEntries';
+import { fetchCountryData } from './Actions/countries';
+import {fetchSurfSpotData} from './Actions/surfSpots';
 import './App.css';
 import LogEntry from './Components/logEntry';
 import 'moment-timezone';
@@ -14,14 +15,17 @@ class App extends Component {
   componentWillMount(){
     this.props.fetchLogEntryData();
     this.props.fetchCountryData();
+    this.props.fetchSurfSpotData();
   }
   componentDidMount() {
     window.scrollTo(0, 0)
   }
   render() {
-    let dataFetch = this.props.dataFetch
-    let logEntries = this.props.logEntryData
-    let countries = this.props.countryData
+    let dataFetch = this.props.dataFetch;
+    let logEntries = this.props.logEntryData;
+    let countries = this.props.countryData;
+    let surfSpots = this.props.surfSpotData;
+
     return (
       <div className="App">
         <Media src={header} width={'100%'} alt="Surfers Log" />
@@ -38,7 +42,7 @@ class App extends Component {
             type="grow"
           />:
           <Row >
-            <SideBar countries={countries}/>
+            <SideBar countries={countries} surfSpots={surfSpots}/>
             <Col xs="9" style={{ padding: '0px'}}>
               {logEntries.map((logEntry) => (
                 <LogEntry key={logEntry.id} logEntry={logEntry} />
@@ -56,13 +60,16 @@ const mapStateToProps = (state) => {
   return {
     dataFetch: state.dataFetch,
     logEntryData: state.logEntryData,
-    countryData: state.countryData
+    countryData: state.countryData,
+    surfSpotData: state.surfSpotData
+
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchLogEntryData: () => dispatch(fetchLogEntryData()),
-    fetchCountryData: () => dispatch(fetchCountryData())
+    fetchCountryData: () => dispatch(fetchCountryData()),
+    fetchSurfSpotData: () => dispatch(fetchSurfSpotData())
   }
 }
 
