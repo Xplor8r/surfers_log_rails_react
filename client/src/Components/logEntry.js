@@ -12,36 +12,25 @@ const LogEntry = ({logEntry}) => {
     return (
       <Card style={{ textAlign: 'left', margin: '2rem .5rem 1rem .5rem'}} key={logEntry.id}>
         <CardHeader>
+          <CardTitle style={{float: 'right'}}>
+            {logEntry.date && logEntry.time ?
+              <Moment parse="YYYYMMDD h:mm" format="MM/DD/YYYY h:mm a">
+                {logEntry.date} {logEntry.time}
+              </Moment>:
+              <Moment parse="YYYYMMDD" format="MM/DD/YYYY">
+                {logEntry.date}
+              </Moment>
+            }
+            <br/>
+            {logEntry.rating && <StarRatingComponent name={'rating'} starCount={5} value={logEntry.rating}/>}
+          </CardTitle>
           <strong>{logEntry.user.name}</strong><br/>
           {logEntry.surf_spot.name} {logEntry.country.name}
         </CardHeader>
         <CardBody>
-          <CardTitle>
-            {logEntry.date && logEntry.time ?
-                <Moment
-                  parse="YYYYMMDD h:mm"
-                  format="MM/DD/YYYY h:mm a"
-                >
-                {logEntry.date} {logEntry.time}
-                </Moment>:
-                <Moment
-                  parse="YYYYMMDD"
-                  format="MM/DD/YYYY"
-                >
-                {logEntry.date}
-                </Moment>
-            }
-            <br/>
-            {logEntry.rating &&
-              <StarRatingComponent
-                name={'rating'}
-                starCount={5}
-                value={logEntry.rating}
-            />}
-          </CardTitle>
-            <CardText>
+            {logEntry.swell_1_size && <CardText>
               Swell: {logEntry.swell_1_size} ft {logEntry.swell_1_direction}
-            </CardText>
+            </CardText>}
             {logEntry.wave_count && <CardText>
               Wave Count: {logEntry.wave_count}
             </CardText>}

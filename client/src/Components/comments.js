@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Truncate from 'react-truncate';
-import { CardText, CardFooter } from 'reactstrap';
-
+// import Truncate from 'react-truncate';
+import { CardFooter } from 'reactstrap';
+import Comment from './comment'
 
 class Comments extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class Comments extends Component {
     }
     render() {
         let comments = this.state.comments;
-        let num = this.state.commentsToRender
+        let num = this.state.commentsToRender;
         return (
             <CardFooter>
                 {comments.length === 0 ? <p>No Comments</p>:
@@ -28,10 +28,7 @@ class Comments extends Component {
                     <p>Comments: </p>
                 }
                 {comments.slice(0, num).map((comment) => (
-                    <CardText key={comment.id}>
-                        <strong>{comment.user.name}</strong> <span>posted:</span><br/>
-                        <Truncate lines={1}>{comment.content}</Truncate>
-                    </CardText>
+                    <Comment key={comment.id} comment={comment}/>
                 ))}
             </CardFooter>        
             
