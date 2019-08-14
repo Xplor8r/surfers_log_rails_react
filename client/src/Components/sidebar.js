@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Card, CardBody, CardImg, CardTitle, CardText, Col, ListGroup, ListGroupItem }  from 'reactstrap';
+import { Nav, Card, CardBody, CardImg, CardHeader, CardText, Col, ListGroup, ListGroupItem }  from 'reactstrap';
 import Country from './country';
 import SurfSpot from './surfSpot';
 import header from '../images/surfers-log-header.gif'
@@ -12,9 +12,9 @@ const SideBar = ({countries, surfSpots}) => {
         <Col xs="3" style={{ padding: '0px'}}>
             <Card style={{ margin: '2rem .5rem 1rem .5rem'}}>
                 <CardBody style={{padding: '0px'}}>
-                    <CardTitle style={{paddingTop: '.5rem'}}>
+                    <CardHeader style={{paddingTop: '.5rem'}}>
                         <h3><strong>Surf Spots</strong></h3>
-                    </CardTitle>
+                    </CardHeader>
                     <ListGroup>
                         {surfSpotsWithLogEntries.map((surfSpot) => (
                             <ListGroupItem 
@@ -29,9 +29,9 @@ const SideBar = ({countries, surfSpots}) => {
             </Card>
             <Card style={{ margin: '2rem .5rem 1rem .5rem'}}>
                 <CardBody style={{padding: '0px'}}>
-                    <CardTitle style={{paddingTop: '.5rem'}}>
+                    <CardHeader style={{paddingTop: '.5rem'}}>
                         <h3><strong>Countries</strong></h3>
-                    </CardTitle>
+                    </CardHeader>
                     <ListGroup>
                         {countriesWithLogEntries.map((country) => (
                             <ListGroupItem 
@@ -51,7 +51,7 @@ const SideBar = ({countries, surfSpots}) => {
                     src={header}
                     alt={"Surfer Log"}
                 />
-                <CardText><h3>Ad Goes Here</h3></CardText>
+                <CardText>Ad Goes Here</CardText>
             </Card>
         </Col>
     )
