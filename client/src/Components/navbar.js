@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { Component }from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
     UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
-// import Country from './country';
-// import SurfSpot from './surfSpot';
 
-export default class Example extends React.Component {
+class NavBarComponent extends Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -15,15 +13,18 @@ export default class Example extends React.Component {
     };
 
   }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+  
   handleClick = (e)=> {
     e.preventDefault();
     window.scrollTo(0, 0);
   }
+
   render() {
     let countriesWithLogEntries = this.props.countries.filter(a=>a.log_entries.length > 0);
     let surfSpotsWithLogEntries = this.props.surfSpots.filter(a=>a.log_entries.length > 0);
@@ -78,3 +79,5 @@ export default class Example extends React.Component {
     );
   }
 }
+
+export default NavBarComponent

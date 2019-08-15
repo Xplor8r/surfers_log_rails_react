@@ -7,7 +7,7 @@ import './App.css';
 import LogEntry from './Components/logEntry';
 import 'moment-timezone';
 import { Container, Row, Col, Media, Spinner } from 'reactstrap';
-import Navbar from './Components/navbar';
+import NavBarComponent from './Components/navbar';
 import SideBar from './Components/sidebar';
 import header from './images/surfers-log-header.gif'
 
@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <Media src={header} width={'100%'} alt="Surfers Log" />
-        <Navbar countries={countries} surfSpots={surfSpots}/>
+        <NavBarComponent countries={countries} surfSpots={surfSpots}/>
         <header className="App-header">
         <Container className="content">
           {dataFetch ?
