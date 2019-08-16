@@ -11,6 +11,7 @@ class LogEntriesByUser extends Component {
         window.scrollTo(0, 0)
     }
     render() {
+        let logEntry = this.props.logEntryData[0];
         return (
             <Col xs="9" style={{ padding: '0px'}}>
                 <LogEntry key={logEntry.id} logEntry={logEntry} />
