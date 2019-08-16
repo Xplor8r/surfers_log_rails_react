@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import  { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+
 import { fetchLogEntryData } from './Actions/logEntries';
 import { fetchCountryData } from './Actions/countries';
-import {fetchSurfSpotData} from './Actions/surfSpots';
+import { fetchSurfSpotData } from './Actions/surfSpots';
+
 import './App.css';
-import LogEntry from './Components/logEntry';
 import 'moment-timezone';
-import { Container, Row, Col, Media, Spinner } from 'reactstrap';
+import { Container, Row, Media, Spinner } from 'reactstrap';
+import header from './images/surfers-log-header.gif'
+
+import AllLogEntries from './Containers/allLogEntries';
+// import LogEntriesByCountry from './Containers/logEntriesByCountry';
+// import LogEntriesByUser from './Containers/logEntriesByUser';
+// import LogEntriesBySurfSpot from './Containers/logEntriesBySurfSpot';
+// import ShowLogEntry from './Containers/showLogEntry';
 import NavBarComponent from './Components/navbar';
 import SideBar from './Components/sidebar';
-import header from './images/surfers-log-header.gif'
+
 
 class App extends Component {
   componentWillMount(){
@@ -22,36 +31,39 @@ class App extends Component {
   }
   render() {
     let dataFetch = this.props.dataFetch;
-    let logEntries = this.props.logEntryData;
     let countries = this.props.countryData;
     let surfSpots = this.props.surfSpotData;
 
     return (
-      <div className="App">
-        <Media src={header} width={'100%'} alt="Surfers Log" />
-        <NavBarComponent countries={countries} surfSpots={surfSpots}/>
-        <header className="App-header">
-        <Container className="content">
-          {dataFetch ?
-          <Spinner 
-            style={{
-              backgroundColor: "#7cbcc6",
-              width: '30rem',
-              height: '30rem' 
-            }}
-            type="grow"
-          />:
-          <Row >
-            <SideBar countries={countries} surfSpots={surfSpots}/>
-            <Col xs="9" style={{ padding: '0px'}}>
-              {logEntries.map((logEntry) => (
-                <LogEntry key={logEntry.id} logEntry={logEntry} />
-              ))}
-            </Col>
-          </Row>}
-        </Container>
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <Media src={header} width={'100%'} alt="Surfers Log" />
+          <NavBarComponent countries={countries} surfSpots={surfSpots}/>
+          <header className="App-header">
+          <Container className="content">
+            {dataFetch ?
+            <Spinner 
+              style={{
+                backgroundColor: "#7cbcc6",
+                width: '30rem',
+                height: '30rem' 
+              }}
+              type="grow"
+            />:
+            <Row >
+              <SideBar countries={countries} surfSpots={surfSpots}/>
+              <Switch>
+                <Route exact path="/" component={AllLogEntries}/>
+                {/* <Route exact path="/country/:slug" component={LogEntriesByCountry}/>
+                <Route exact path="/surf-spot/:slug" component={LogEntriesBySurfSpot}/>
+                <Route exact path="/user/:slug" component={LogEntriesByUser} />
+                <Route exact path="/log-entry/:id" component={ShowLogEntry}/> */}
+              </Switch>
+            </Row>}
+          </Container>
+          </header>
+        </div>
+      </Router>
     );
   }
 }
