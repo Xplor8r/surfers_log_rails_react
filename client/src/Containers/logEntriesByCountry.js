@@ -4,21 +4,22 @@ import { Col } from 'reactstrap';
 import LogEntry from '../Components/logEntry';
 
 class LogEntriesByCountry extends Component {
-    componentWillMount(){
 
-    }
     componentDidMount() {
         window.scrollTo(0, 0)
     }
     render() {
+        let dataFetch = this.props.dataFetch;
         let logEntries = this.props.logEntryData;
-        return (
-            <Col xs="9" style={{ padding: '0px'}}>
-                {logEntries.map((logEntry) => (
-                    <LogEntry key={logEntry.id} logEntry={logEntry} />
-                ))}
-            </Col>
-        )
+        if (!dataFetch) {
+            return (
+                <Col xs="9" style={{ padding: '0px'}}>
+                    {logEntries.map((logEntry) => (
+                        <LogEntry key={logEntry.id} logEntry={logEntry} />
+                    ))}
+                </Col>
+            )
+        }
     }
 }
 
@@ -26,6 +27,6 @@ const mapStateToProps = (state) => {
     return {
         logEntryData: state.logEntryData
     }
-  }
+}
   
-export default connect(mapStateToProps)(LogEntriesByCountry)
+export default connect(mapStateToProps)(LogEntriesByCountry);
