@@ -1,13 +1,19 @@
 import React, { Component }from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
-    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Media } from 'reactstrap';
+import  { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
+  NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu,
+  DropdownItem, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
+import { fetchLogEntryDataByCountry } from '../Actions/logEntries';
+
 
 class NavBarComponent extends Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleCountryLinkClick = this.handleCountryLinkClick.bind(this);
     this.state = {
       isOpen: false
     };
@@ -23,6 +29,10 @@ class NavBarComponent extends Component {
   handleClick = (e)=> {
     e.preventDefault();
     window.scrollTo(0, 0);
+  }
+  
+  handleCountryLinkClick = (id) => {
+    this.props.fetchLogEntryDataByCountry(id);
   }
 
   render() {
@@ -52,7 +62,12 @@ class NavBarComponent extends Component {
                       key={country.id}
                       className="justify-content-center"
                     >
-                      {country.name}
+                      <Link
+                        to={`/country/${country.slug}`}
+                        onClick={() => this.handleCountryLinkClick(country.id)}
+                      >
+                        {country.name}
+                      </Link>
                     </DropdownItem>
                   ))}
                 </DropdownMenu>
@@ -80,4 +95,17 @@ class NavBarComponent extends Component {
   }
 }
 
-export default NavBarComponent
+const mapStateToProps = (state) => {
+  return {
+      logEntryData: state.logEntryData
+  }
+}
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//       fetchLogEntryDataByCountry: () => dispatch(fetchLogEntryDataByCountry())
+
+//   }
+// }
+
+export default connect(mapStateToProps, {fetchLogEntryDataByCountry})(NavBarComponent);
