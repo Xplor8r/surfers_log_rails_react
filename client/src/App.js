@@ -12,10 +12,10 @@ import { Container, Row, Media, Spinner } from 'reactstrap';
 import header from './images/surfers-log-header.gif'
 
 import AllLogEntries from './Containers/allLogEntries';
-// import LogEntriesByCountry from './Containers/logEntriesByCountry';
-// import LogEntriesByUser from './Containers/logEntriesByUser';
-// import LogEntriesBySurfSpot from './Containers/logEntriesBySurfSpot';
-// import ShowLogEntry from './Containers/showLogEntry';
+import LogEntriesByCountry from './Containers/logEntriesByCountry';
+import LogEntriesByUser from './Containers/logEntriesByUser';
+import LogEntriesBySurfSpot from './Containers/logEntriesBySurfSpot';
+import ShowLogEntry from './Containers/showLogEntry';
 import NavBarComponent from './Components/navbar';
 import SideBar from './Components/sidebar';
 
@@ -54,10 +54,10 @@ class App extends Component {
               <SideBar countries={countries} surfSpots={surfSpots}/>
               <Switch>
                 <Route exact path="/" component={AllLogEntries}/>
-                {/* <Route exact path="/country/:slug" component={LogEntriesByCountry}/>
+                <Route exact path="/country/:slug" component={LogEntriesByCountry}/>
                 <Route exact path="/surf-spot/:slug" component={LogEntriesBySurfSpot}/>
                 <Route exact path="/user/:slug" component={LogEntriesByUser} />
-                <Route exact path="/log-entry/:id" component={ShowLogEntry}/> */}
+                <Route exact path="/log-entry/:id" component={ShowLogEntry}/>
               </Switch>
             </Row>}
           </Container>
