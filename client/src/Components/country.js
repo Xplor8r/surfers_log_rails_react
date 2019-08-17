@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge, UncontrolledDropdown, DropdownToggle,
     DropdownMenu, DropdownItem } from 'reactstrap';
-import Truncate from 'react-truncate';
+import SurfSpotLink from './surfSpotLink'
 
 const Country = ({country}) => {
     return (
@@ -14,12 +14,8 @@ const Country = ({country}) => {
                     <DropdownItem>Log Entries</DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem header>Surf Spots</DropdownItem>       
-                    {country.surf_spots.map((spot)=> (
-                        <DropdownItem key={spot.id}>
-                            <Truncate lines={1} width={150}>
-                                {spot.name}
-                            </Truncate>
-                        </DropdownItem>
+                    {country.surf_spots.map((surfSpot)=> (
+                        <SurfSpotLink surfSpot={surfSpot}/>
                     ))}
                 </DropdownMenu>
             </UncontrolledDropdown>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchLogEntryDataByCountry } from '../Actions/logEntries';
 import { beginDataFetch } from '../Actions/dataFetch';
 import { DropdownItem } from 'reactstrap';
+import Truncate from 'react-truncate';
 
 class CountryLink extends Component {
     constructor(props) {
@@ -27,7 +28,9 @@ class CountryLink extends Component {
                     to={`/country/${country.slug}`}
                     onClick={() => this.handleCountryLinkClick(country.id)}
                 >
-                    {country.name}
+                    <Truncate lines={1} width={150}>
+                        {country.name}
+                    </Truncate>
                 </Link>
             </DropdownItem>
         )

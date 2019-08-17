@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchLogEntryDataBySurfSpot } from '../Actions/logEntries';
 import { beginDataFetch } from '../Actions/dataFetch';
 import { DropdownItem } from 'reactstrap';
+import Truncate from 'react-truncate';
 
 class SurfSpotLink extends Component {
     constructor(props) {
@@ -27,7 +28,9 @@ class SurfSpotLink extends Component {
                     to={`/surf-spot/${surfSpot.slug}`}
                     onClick={() => this.handleSurfSpotLinkClick(surfSpot.id)}
                 >
-                    {surfSpot.name}
+                    <Truncate lines={1} width={150}>
+                        {surfSpot.name}
+                    </Truncate>
                 </Link>
             </DropdownItem>
         )
