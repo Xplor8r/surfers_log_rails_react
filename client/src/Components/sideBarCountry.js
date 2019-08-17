@@ -15,7 +15,7 @@ const Country = ({country}) => {
                     <DropdownItem divider />
                     <DropdownItem header>Surf Spots</DropdownItem>       
                     {country.surf_spots.map((surfSpot)=> (
-                        <SurfSpotLink surfSpot={surfSpot}/>
+                        <SurfSpotLink surfSpot={surfSpot} key={surfSpot.id}/>
                     ))}
                 </DropdownMenu>
             </UncontrolledDropdown>

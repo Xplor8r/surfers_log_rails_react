@@ -20,10 +20,7 @@ class SurfSpotLink extends Component {
     render() {
         let surfSpot = this.props.surfSpot
         return (
-            <DropdownItem
-                key={surfSpot.id}
-                className="justify-content-center"
-            >
+            <DropdownItem className="justify-content-center">
                 <Link
                     to={`/surf-spot/${surfSpot.slug}`}
                     onClick={() => this.handleSurfSpotLinkClick(surfSpot.id)}

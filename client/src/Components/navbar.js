@@ -49,7 +49,7 @@ class NavBarComponent extends Component {
                 </DropdownToggle>           
                 <DropdownMenu right>
                   {countriesWithLogEntries.map((country) => (
-                    <CountryLink country={country}/>
+                    <CountryLink country={country} key={country.id}/>
                   ))}
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -60,7 +60,7 @@ class NavBarComponent extends Component {
             
                 <DropdownMenu right>
                   {surfSpotsWithLogEntries.map((surfSpot) => (
-                    <SurfSpotLink surfSpot={surfSpot}/>
+                    <SurfSpotLink surfSpot={surfSpot} key={surfSpot.id}/>
                   ))}
                 </DropdownMenu>
               </UncontrolledDropdown>

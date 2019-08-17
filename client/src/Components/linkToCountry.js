@@ -20,10 +20,7 @@ class CountryLink extends Component {
     render() {
         let country = this.props.country
         return (
-            <DropdownItem
-                key={country.id}
-                className="justify-content-center"
-            >
+            <DropdownItem className="justify-content-center">
                 <Link
                     to={`/country/${country.slug}`}
                     onClick={() => this.handleCountryLinkClick(country.id)}
