@@ -21,10 +21,11 @@ class Comments extends Component {
     render() {
         let comments = this.state.comments;
         let num = this.state.commentsToRender;
+        let logEntryId = this.props.comments[0].log_entry_id;
         return (
             <CardFooter>
                 {comments.length === 0 ? <p>No Comments</p>:
-                    num === 0 ? <a href="#" onClick={(e) => this.handleClick(e)}>Comments: {comments.length}</a>:
+                    num === 0 ? <a href={`/log-entry/${logEntryId}`} onClick={(e) => this.handleClick(e)}>Comments: {comments.length}</a>:
                     <p>Comments: </p>
                 }
                 {comments.slice(0, num).map((comment) => (

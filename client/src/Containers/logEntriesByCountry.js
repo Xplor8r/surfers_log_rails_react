@@ -9,9 +9,9 @@ class LogEntriesByCountry extends Component {
         window.scrollTo(0, 0)
     }
     render() {
-        console.log(this.props.dataFetch)
         let dataFetch = this.props.dataFetch;
         let logEntries = this.props.logEntryData;
+        
         if (!dataFetch) {
             return (
                 <Col xs="9" style={{ padding: '0px'}}>
