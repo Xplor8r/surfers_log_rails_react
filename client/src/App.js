@@ -56,7 +56,7 @@ class App extends Component {
                 <Route exact path="/" component={AllLogEntries}/>
                 <Route exact path="/country/:slug" component={LogEntriesByCountry}/>
                 <Route exact path="/surf-spot/:slug" component={LogEntriesBySurfSpot}/>
-                <Route exact path="/user/:slug" component={LogEntriesByUser} />
+                <Route exact path="/surfer/:slug" component={LogEntriesByUser} />
                 <Route exact path="/log-entry/:id" component={ShowLogEntry}/>
               </Switch>
             </Row>}

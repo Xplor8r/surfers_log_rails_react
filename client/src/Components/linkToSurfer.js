@@ -18,7 +18,6 @@ class SurferLink extends Component {
         this.props.fetchLogEntryDataByUser(id);
     }
     render() {
-        console.log(this.props.surfer)
         let surfer = this.props.surfer
         return (
             <DropdownItem className="justify-content-center">
