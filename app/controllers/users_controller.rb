@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     def show
         # binding.pry
-        render json: @user
+        render json: @user, include: ['log_entries.user', 'log_entries.surf_spot', 'log_entries.country', 'log_entries.posts']
     end
 
     def index
