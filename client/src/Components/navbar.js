@@ -1,9 +1,9 @@
 import React, { Component }from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
-  NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu,
-  DropdownItem, Media } from 'reactstrap';
+  NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
 import CountryLink from './countryLink'
+import SurfSpotLink from './surfSpotLink'
 
 class NavBarComponent extends Component {
   constructor(props) {
@@ -13,7 +13,6 @@ class NavBarComponent extends Component {
     this.state = {
       isOpen: false
     };
-
   }
 
   toggle() {
@@ -26,6 +25,7 @@ class NavBarComponent extends Component {
     e.preventDefault();
     window.scrollTo(0, 0);
   }
+  
   render() {
     let countriesWithLogEntries = this.props.countries.filter(a=>a.log_entries.length > 0);
     let surfSpotsWithLogEntries = this.props.surfSpots.filter(a=>a.log_entries.length > 0);
@@ -60,12 +60,7 @@ class NavBarComponent extends Component {
             
                 <DropdownMenu right>
                   {surfSpotsWithLogEntries.map((surfSpot) => (
-                    <DropdownItem
-                      key={surfSpot.id}
-                      className="justify-content-center"
-                    >
-                      {surfSpot.name}
-                    </DropdownItem>
+                    <SurfSpotLink surfSpot={surfSpot}/>
                   ))}
                 </DropdownMenu>
               </UncontrolledDropdown>

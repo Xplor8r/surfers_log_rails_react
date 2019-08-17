@@ -36,6 +36,7 @@ export const fetchLogEntryDataBySurfSpot = (id) => {
         fetch('/RailsApi/log_entries/surf_spot/' + id, { method: 'GET' })
         .then(response => response.json())
         .then(logEntryData => {
+            dispatch(beginDataFetch())
             dispatch(getLogEntryData(logEntryData))
             dispatch(endDataFetch())
         })
