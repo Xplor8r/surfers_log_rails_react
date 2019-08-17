@@ -6,7 +6,7 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
   DropdownItem, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
 import { fetchLogEntryDataByCountry } from '../Actions/logEntries';
-
+import { beginDataFetch } from '../Actions/dataFetch';
 
 class NavBarComponent extends Component {
   constructor(props) {
@@ -32,6 +32,7 @@ class NavBarComponent extends Component {
   }
   
   handleCountryLinkClick = (id) => {
+    this.props.beginDataFetch();
     this.props.fetchLogEntryDataByCountry(id);
   }
 
@@ -97,7 +98,8 @@ class NavBarComponent extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      logEntryData: state.logEntryData
+      logEntryData: state.logEntryData,
+      dataFetch: state.dataFetch,
   }
 }
 
@@ -108,4 +110,4 @@ const mapStateToProps = (state) => {
 //   }
 // }
 
-export default connect(mapStateToProps, {fetchLogEntryDataByCountry})(NavBarComponent);
+export default connect(mapStateToProps, {fetchLogEntryDataByCountry, beginDataFetch})(NavBarComponent);

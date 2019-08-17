@@ -9,6 +9,7 @@ class LogEntriesByCountry extends Component {
         window.scrollTo(0, 0)
     }
     render() {
+        console.log(this.props.dataFetch)
         let dataFetch = this.props.dataFetch;
         let logEntries = this.props.logEntryData;
         if (!dataFetch) {
@@ -25,7 +26,8 @@ class LogEntriesByCountry extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        logEntryData: state.logEntryData
+        logEntryData: state.logEntryData,
+        dataFetch: state.dataFetch
     }
 }
   
