@@ -1,11 +1,18 @@
 import React from 'react';
 import { Badge, UncontrolledDropdown, DropdownToggle,
     DropdownMenu, DropdownItem } from 'reactstrap';
-import Truncate from 'react-truncate';
+import SurferLink from './linkToSurfer'
 
 const SurfSpot = ({surfSpot}) => {
-    let surfers = [];
-    surfSpot.log_entries.forEach((logEntry)=>surfers.push(logEntry.user.name));
+    let logEntries = surfSpot.log_entries;
+    let surfers = Array.from(new Set(logEntries.map(logEntry=>logEntry.user.id)))
+        .map(id=>{
+            return {
+                id: id,
+                slug: logEntries.find(logEntry=>logEntry.user.id===id).user.slug,
+                name: logEntries.find(logEntry=>logEntry.user.id===id).user.name
+            }
+        })
 
     return (
             <UncontrolledDropdown nav inNavbar>
@@ -17,12 +24,9 @@ const SurfSpot = ({surfSpot}) => {
                     <DropdownItem>Log Entries</DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem header>Surfers</DropdownItem>            
-                    {[...new Set(surfers)].map((surfer, i)=> (
-                        <DropdownItem key={i}>
-                            <Truncate lines={1} width={150}>
-                                {surfer}
-                            </Truncate>
-                        </DropdownItem>
+                    {surfers.map((surfer)=> (
+                        <SurferLink surfer={surfer} key={surfer.id}/>
+
                     ))}
                 </DropdownMenu>
             </UncontrolledDropdown>
