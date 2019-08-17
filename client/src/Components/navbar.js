@@ -1,19 +1,15 @@
 import React, { Component }from 'react';
-import  { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
   NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu,
   DropdownItem, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
-import { fetchLogEntryDataByCountry } from '../Actions/logEntries';
-import { beginDataFetch } from '../Actions/dataFetch';
+import CountryLink from './countryLink'
 
 class NavBarComponent extends Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleCountryLinkClick = this.handleCountryLinkClick.bind(this);
     this.state = {
       isOpen: false
     };
@@ -30,12 +26,6 @@ class NavBarComponent extends Component {
     e.preventDefault();
     window.scrollTo(0, 0);
   }
-  
-  handleCountryLinkClick = (id) => {
-    this.props.beginDataFetch();
-    this.props.fetchLogEntryDataByCountry(id);
-  }
-
   render() {
     let countriesWithLogEntries = this.props.countries.filter(a=>a.log_entries.length > 0);
     let surfSpotsWithLogEntries = this.props.surfSpots.filter(a=>a.log_entries.length > 0);
@@ -59,17 +49,7 @@ class NavBarComponent extends Component {
                 </DropdownToggle>           
                 <DropdownMenu right>
                   {countriesWithLogEntries.map((country) => (
-                    <DropdownItem
-                      key={country.id}
-                      className="justify-content-center"
-                    >
-                      <Link
-                        to={`/country/${country.slug}`}
-                        onClick={() => this.handleCountryLinkClick(country.id)}
-                      >
-                        {country.name}
-                      </Link>
-                    </DropdownItem>
+                    <CountryLink country={country}/>
                   ))}
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -96,18 +76,4 @@ class NavBarComponent extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-      logEntryData: state.logEntryData,
-      dataFetch: state.dataFetch,
-  }
-}
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//       fetchLogEntryDataByCountry: () => dispatch(fetchLogEntryDataByCountry())
-
-//   }
-// }
-
-export default connect(mapStateToProps, {fetchLogEntryDataByCountry, beginDataFetch})(NavBarComponent);
+export default NavBarComponent
