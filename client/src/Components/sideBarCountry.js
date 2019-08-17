@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge, UncontrolledDropdown, DropdownToggle,
     DropdownMenu, DropdownItem } from 'reactstrap';
-import SurfSpotLink from './surfSpotLink'
+import SurfSpotLink from './linkToSurfSpot'
 
 const Country = ({country}) => {
     return (

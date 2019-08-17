@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav, Card, CardBody, CardImg, CardHeader, CardText, Col, ListGroup, ListGroupItem }  from 'reactstrap';
-import Country from './country';
-import SurfSpot from './surfSpot';
+import Country from './sideBarCountry';
+import SurfSpot from './sideBarSurfSpot';
 import header from '../images/surfers-log-header.gif'
 
 const SideBar = ({countries, surfSpots}) => {
