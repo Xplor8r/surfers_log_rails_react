@@ -4,6 +4,7 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
 import surfLogo from '../images/surfers_log_logo.jpg'
 import CountryLink from './linkToCountry'
 import SurfSpotLink from './linkToSurfSpot'
+import SignUpModal from './userSignUp'
 
 class NavBarComponent extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class NavBarComponent extends Component {
                 <NavLink href="/">Log In</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">Sign Up</NavLink>
+                <NavLink href="/"><SignUpModal/></NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
