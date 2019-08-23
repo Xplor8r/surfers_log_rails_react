@@ -1,10 +1,9 @@
 import React, { Component }from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
-  NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, Media } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
 import CountryLink from './linkToCountry'
 import SurfSpotLink from './linkToSurfSpot'
-import SignUpModal from './userSignUp'
+import ModalForm from './modalForm'
 
 class NavBarComponent extends Component {
   constructor(props) {
@@ -38,12 +37,8 @@ class NavBarComponent extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/">Log In</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/"><SignUpModal/></NavLink>
-              </NavItem>
+              <ModalForm form={"Log In"}/>
+              <ModalForm form={"Sign Up"}/>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Countries

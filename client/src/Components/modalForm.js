@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 // import { connect } from 'react-redux';
-import { Modal, ModalBody, Button, Form,
-     FormGroup, Label, Input } from "reactstrap";
+import { Modal, ModalBody, ModalHeader, Button, Form,
+     FormGroup, Label, Input, NavItem, NavLink, Media } from "reactstrap";
+     import surfLogo from '../images/surfers_log_logo.jpg'
 
-
-class SignUpModal extends Component {
+class ModalForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,22 +24,34 @@ class SignUpModal extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    handleOnSubmit(event){
+    handleOnLogInSubmit(event){
         event.preventDefault();
         this.modalToggle();
-        console.log('submit')
+        console.log('submit Log In')
     }
 
+    handleOnSignUpSubmit(event){
+        event.preventDefault();
+        this.modalToggle();
+        console.log('submit Sign Up')
+    }
 
     render() {
         return (
-            <div>
-                <Button color="secondary" size="sm" onClick={this.modalToggle} style={{ marginRight: '.5rem' }}>Sign Up</Button>
-                <Modal isOpen={this.state.modal} toggle={this.modalToggle}>
-                    <ModalBody className="bg-secondary" >
-                        <div>
-                            <Button onClick={this.modalToggle} close/>
-                            <Form onSubmit={(event) => this.handleOnSubmit(event)}>
+            <NavItem>
+                <NavLink href="#" onClick={this.modalToggle}>{this.props.form}</NavLink>
+                <Modal isOpen={this.state.modal} toggle={this.modalToggle}>    
+                    <ModalHeader toggle={this.modalToggle}>
+                        <Media src={surfLogo} height={60} width={60} alt="Surfers Log Logo" />
+                        {this.props.form}
+                    </ModalHeader>
+                    <ModalBody>
+                        <div>   
+                            <Form onSubmit={
+                                this.props.form === "Log In" ?
+                                (event) => this.handleOnLogInSubmit(event):
+                                (event) => this.handleOnSignUpSubmit(event)
+                            }>
                                 <FormGroup>
                                     <Label for="userName">Surfer Name</Label>
                                     <Input type="text" id="userName" name="userName" placeholder="Surfer Name"
@@ -50,12 +62,13 @@ class SignUpModal extends Component {
                                     <Input type="email" id="email" name="email" placeholder="Surfer Email"
                                         onChange={(event) => this.handleOnChange(event)} />
                                 </FormGroup>
-                                <Button type="submit">Sign Up</Button>
+                                <Button color="link" type="submit">{this.props.form}</Button>
                             </Form>
                         </div>
                     </ModalBody>
+
                 </Modal>
-            </div>
+            </NavItem>
         )
     }
 }
@@ -67,4 +80,4 @@ class SignUpModal extends Component {
 // }
 
 // export default connect(mapStateToProps)(SignUpModal);
-export default SignUpModal
+export default ModalForm
