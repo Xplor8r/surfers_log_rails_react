@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { connect } from 'react-redux';
-import { Modal, ModalBody, ModalHeader, Button, Form,
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button, Form,
      FormGroup, Label, Input, NavItem, NavLink, Media } from "reactstrap";
      import surfLogo from '../images/surfers_log_logo.jpg'
 
@@ -10,7 +10,8 @@ class ModalForm extends Component {
         this.state = {
             modal: false,
             userName: '',
-            email: ''
+            email: '',
+            password: ''
         };
         this.modalToggle = this.modalToggle.bind(this);
         this.handleChange = this.handleOnChange.bind(this);
@@ -28,12 +29,14 @@ class ModalForm extends Component {
         event.preventDefault();
         this.modalToggle();
         console.log('submit Log In')
+        console.log(this.state)
     }
 
     handleOnSignUpSubmit(event){
         event.preventDefault();
         this.modalToggle();
         console.log('submit Sign Up')
+        console.log(this.state)
     }
 
     render() {
@@ -62,11 +65,18 @@ class ModalForm extends Component {
                                     <Input type="email" id="email" name="email" placeholder="Surfer Email"
                                         onChange={(event) => this.handleOnChange(event)} />
                                 </FormGroup>
+                                <FormGroup>
+                                    <Label for="password">Password</Label>
+                                    <Input type="password" id="password" name="password" placeholder="Password"
+                                        onChange={(event) => this.handleOnChange(event)} />
+                                </FormGroup>
                                 <Button color="link" type="submit">{this.props.form}</Button>
                             </Form>
                         </div>
                     </ModalBody>
-
+                    <ModalFooter>
+                        Surf. Log. Share. Surfers Log &copy;
+                    </ModalFooter>
                 </Modal>
             </NavItem>
         )
