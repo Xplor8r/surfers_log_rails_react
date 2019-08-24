@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Col } from 'reactstrap';
 import LogEntry from '../Components/logEntry';
+import { fetchLogEntryData } from '../Actions/logEntries';
 
 class AllLogEntries extends Component {
-
+    componentWillMount(){
+        this.props.fetchLogEntryData();
+    }
     render() {
         let logEntries = this.props.logEntryData;
         return (
@@ -23,4 +26,4 @@ const mapStateToProps = (state) => {
     }
   }
   
-export default connect(mapStateToProps)(AllLogEntries)
+export default connect(mapStateToProps, { fetchLogEntryData })(AllLogEntries)

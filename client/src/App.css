@@ -31,7 +31,12 @@
     transform: rotate(360deg);
   }
 }
+.spinner-grow {
+  background-color: #7cbcc6;
+  width: 30rem;
+  height: 30rem; 
 
+}
 .card {
   margin: 2rem .5rem 1rem;
 }
