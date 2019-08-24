@@ -1,9 +1,9 @@
 import React, { useState }from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
-import CountryLink from './linkToCountry'
-import SurfSpotLink from './linkToSurfSpot'
-import ModalForm from './modalForm'
+import CountryLink from '../Components/linkToCountry'
+import SurfSpotLink from '../Components/linkToSurfSpot'
+import ModalForm from '../Components/modalForm'
 import  { Link } from 'react-router-dom';
 
 const NavBarComponent = ({countries,surfSpots}) => {

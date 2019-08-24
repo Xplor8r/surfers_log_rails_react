@@ -15,8 +15,8 @@ import LogEntriesByCountry from './Containers/logEntriesByCountry';
 import LogEntriesByUser from './Containers/logEntriesByUser';
 import LogEntriesBySurfSpot from './Containers/logEntriesBySurfSpot';
 import ShowLogEntry from './Containers/showLogEntry';
-import NavBarComponent from './Components/navbar';
-import SideBar from './Components/sidebar';
+import NavBarComponent from './Containers/navbar';
+import SideBar from './Containers/sidebar';
 
 
 class App extends Component {
