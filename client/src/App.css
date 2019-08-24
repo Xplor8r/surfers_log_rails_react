@@ -32,6 +32,9 @@
   }
 }
 
+.card {
+  margin: 2rem .5rem 1rem;
+}
 .card-img-bottom:hover {
   transition-duration: 1s;
   transform: scale(1.05);

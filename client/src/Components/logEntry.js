@@ -10,7 +10,7 @@ import Comments from './comments'
 const LogEntry = ({logEntry}) => {
     let comments = logEntry.posts
     return (
-      <Card style={{ textAlign: 'left', margin: '2rem .5rem 1rem .5rem'}} key={logEntry.id}>
+      <Card style={{ textAlign: 'left'}} key={logEntry.id}>
         <CardHeader>
           <CardTitle style={{float: 'right'}}>
             {logEntry.date && logEntry.time ?

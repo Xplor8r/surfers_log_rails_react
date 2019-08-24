@@ -10,7 +10,7 @@ const SideBar = ({countries, surfSpots}) => {
 
     return (
         <Col xs="3" style={{ padding: '0px'}}>
-            <Card style={{ margin: '2rem .5rem 1rem .5rem'}}>
+            <Card>
                 <CardBody style={{padding: '0px'}}>
                     <CardHeader style={{paddingTop: '.5rem'}}>
                         <h3><strong>Surf Spots</strong></h3>
@@ -27,7 +27,7 @@ const SideBar = ({countries, surfSpots}) => {
                     </ListGroup>
                 </CardBody>
             </Card>
-            <Card style={{ margin: '2rem .5rem 1rem .5rem'}}>
+            <Card>
                 <CardBody style={{padding: '0px'}}>
                     <CardHeader style={{paddingTop: '.5rem'}}>
                         <h3><strong>Countries</strong></h3>
@@ -44,7 +44,7 @@ const SideBar = ({countries, surfSpots}) => {
                     </ListGroup>
                 </CardBody>
             </Card>
-            <Card style={{position: 'sticky', top: '120px', margin: '2rem .5rem 1rem .5rem'}}>
+            <Card style={{position: 'sticky', top: '120px'}}>
                 <CardImg
                     top
                     width='50%'
