@@ -4,6 +4,7 @@ import surfLogo from '../images/surfers_log_logo.jpg'
 import CountryLink from './linkToCountry'
 import SurfSpotLink from './linkToSurfSpot'
 import ModalForm from './modalForm'
+import  { Link } from 'react-router-dom';
 
 const NavBarComponent = ({countries,surfSpots}) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,8 +15,10 @@ const NavBarComponent = ({countries,surfSpots}) => {
 
   return (
     <Navbar sticky="top" style={{backgroundColor: "#7cbcc6"}} light expand="md">
-      <NavbarBrand href="/">
-        <Media src={surfLogo} height={60} alt="Surfers Log Logo" />
+      <NavbarBrand>
+        <Link to={'/'}>
+          <Media src={surfLogo} height={60} alt="Surfers Log Logo" />
+        </Link>
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
