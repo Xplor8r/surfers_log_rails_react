@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button, Form,
      FormGroup, Label, Input, NavItem, NavLink, Media } from "reactstrap";
-     import surfLogo from '../images/surfers_log_logo.jpg'
+import surfLogo from '../images/surfers_log_logo.jpg';
+import { createSurfer } from '../Actions/createSurfer'
 
 class ModalForm extends Component {
     constructor(props) {
@@ -35,14 +36,15 @@ class ModalForm extends Component {
     handleOnSignUpSubmit(event){
         event.preventDefault();
         this.modalToggle();
-        console.log('submit Sign Up')
-        console.log(this.state)
+        this.props.createSurfer(this.state)
     }
 
     render() {
         return (
             <NavItem>
-                <NavLink href="#" onClick={this.modalToggle}>{this.props.form}</NavLink>
+                <NavLink href="#" onClick={this.modalToggle}>
+                    {this.props.form}
+                </NavLink>
                 <Modal isOpen={this.state.modal} toggle={this.modalToggle}>    
                     <ModalHeader toggle={this.modalToggle}>
                         <Media src={surfLogo} height={60} width={60} alt="Surfers Log Logo" />
@@ -57,20 +59,41 @@ class ModalForm extends Component {
                             }>
                                 <FormGroup>
                                     <Label for="userName">Surfer Name</Label>
-                                    <Input type="text" id="userName" name="userName" placeholder="Surfer Name"
-                                        onChange={(event) => this.handleOnChange(event)} />
+                                    <Input
+                                        type="text"
+                                        id="userName"
+                                        name="userName"
+                                        placeholder="Surfer Name"
+                                        onChange={(event) => this.handleOnChange(event)}
+                                    />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="email">Surfer Email</Label>
-                                    <Input type="email" id="email" name="email" placeholder="Surfer Email"
-                                        onChange={(event) => this.handleOnChange(event)} />
+                                    <Input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="Surfer Email"
+                                        onChange={(event) => this.handleOnChange(event)}
+                                    />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="password">Password</Label>
-                                    <Input type="password" id="password" name="password" placeholder="Password"
-                                        onChange={(event) => this.handleOnChange(event)} />
+                                    <Input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Password"
+                                        onChange={(event) => this.handleOnChange(event)}
+                                    />
                                 </FormGroup>
-                                <Button color="link" className="coral" type="submit">{this.props.form}</Button>
+                                <Button
+                                    color="link"
+                                    className="coral"
+                                    type="submit"
+                                >
+                                    {this.props.form}
+                                </Button>
                             </Form>
                         </div>
                     </ModalBody>
@@ -83,11 +106,10 @@ class ModalForm extends Component {
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
+const mapStateToProps = (state) => {
+    return {
+        logEntryData: state.logEntryData
+    }
+}
 
-//     }
-// }
-
-// export default connect(mapStateToProps)(SignUpModal);
-export default ModalForm
+export default connect(mapStateToProps, { createSurfer })(ModalForm);
