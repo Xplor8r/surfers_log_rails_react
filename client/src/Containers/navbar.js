@@ -30,7 +30,7 @@ const NavBarComponent = ({countries,surfSpots}) => {
             </DropdownToggle>           
             <DropdownMenu right>
               {countriesWithLogEntries.map((country) => (
-                <CountryLink country={country} key={country.id}/>
+                <CountryLink display={'nav'} country={country} key={country.id}/>
               ))}
             </DropdownMenu>
           </UncontrolledDropdown>

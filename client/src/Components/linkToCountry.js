@@ -19,7 +19,7 @@ class CountryLink extends Component {
         this.props.fetchLogEntryDataByCountry(id);
         window.scrollTo(0, 0);
     }
-    
+
     render() {
         let country = this.props.country
         return (
@@ -29,9 +29,12 @@ class CountryLink extends Component {
                     to={`/country/${country.slug}`}
                     onClick={() => this.handleCountryLinkClick(country.id)}
                 >
-                    <Truncate lines={1} width={150}>
-                        {country.name}
-                    </Truncate>
+                    {this.props.display === 'nav' ?
+                        <Truncate lines={1} width={150}>  
+                                {country.name}
+                        </Truncate>:
+                        <span>Log Entries</span>
+                    }
                 </Link>
             </DropdownItem>
         )
