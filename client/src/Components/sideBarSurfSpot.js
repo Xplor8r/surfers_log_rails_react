@@ -2,6 +2,7 @@ import React from 'react';
 import { Badge, UncontrolledDropdown, DropdownToggle,
     DropdownMenu, DropdownItem } from 'reactstrap';
 import SurferLink from './linkToSurfer'
+import SurfSpotLink from './linkToSurfSpot'
 
 const SurfSpot = ({surfSpot}) => {
     let logEntries = surfSpot.log_entries;
@@ -20,9 +21,11 @@ const SurfSpot = ({surfSpot}) => {
                     {surfSpot.name} {' '}
                     <Badge pill>{surfSpot.log_entries.length}</Badge>          
                 </DropdownToggle>
+
                 <DropdownMenu left="true">
-                    <DropdownItem>Log Entries</DropdownItem>
+                    <SurfSpotLink display={'side'} surfSpot={surfSpot}/>
                     <DropdownItem divider />
+
                     <DropdownItem header>Surfers</DropdownItem>            
                     {surfers.map((surfer)=> (
                         <SurferLink surfer={surfer} key={surfer.id}/>

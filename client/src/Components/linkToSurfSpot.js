@@ -19,7 +19,7 @@ class SurfSpotLink extends Component {
         this.props.fetchLogEntryDataBySurfSpot(id);
         window.scrollTo(0, 0);
     }
-    
+
     render() {
         let surfSpot = this.props.surfSpot
         return (
@@ -29,9 +29,12 @@ class SurfSpotLink extends Component {
                     to={`/surf-spot/${surfSpot.slug}`}
                     onClick={() => this.handleSurfSpotLinkClick(surfSpot.id)}
                 >
-                    <Truncate lines={1} width={150}>
-                        {surfSpot.name}
-                    </Truncate>
+                    {this.props.display === 'nav' ?
+                        <Truncate lines={1} width={150}>
+                            {surfSpot.name}
+                        </Truncate>:
+                        <span>Log Entries</span>
+                    }
                 </Link>
             </DropdownItem>
         )

@@ -53,8 +53,13 @@ div.spinner-grow {
 
 .coral:hover {
   color: #FF6F61;
+  text-decoration: none;
 }
 
 a:focus {
   outline:none !important;
+}
+
+button.dropdown-item:active {
+  background-color: #7cbcc6;
 }
