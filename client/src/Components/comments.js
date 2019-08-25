@@ -1,40 +1,35 @@
-import React, { Component } from 'react';
-// import Truncate from 'react-truncate';
+import React, { useState } from 'react';
 import { CardFooter } from 'reactstrap';
 import Comment from './comment'
+import  { Link } from 'react-router-dom';
 
-class Comments extends Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-        this.state = {
-            comments: this.props.comments.slice(1),
-            commentsToRender: 0
-        }
-    }
-    handleClick = (e) => { 
+const Comments = ({posts}) => {
+    const [comments] = useState(posts.slice(1));
+    const [commentsToRender, setCommentsToRender] = useState(0);
+    const handleClick = (e) => { 
         e.preventDefault();
-        this.setState({
-            commentsToRender: this.state.comments.length + 1
-        })
+        setCommentsToRender(comments.length + 1);
     }
-    render() {
-        let comments = this.state.comments;
-        let num = this.state.commentsToRender;
-        let logEntryId = this.props.comments[0].log_entry_id;
-        return (
-            <CardFooter>
-                {comments.length === 0 ? <p>No Comments</p>:
-                    num === 0 ? <a href={`/log-entry/${logEntryId}`} onClick={(e) => this.handleClick(e)}>Comments: {comments.length}</a>:
-                    <p>Comments: </p>
-                }
-                {comments.slice(0, num).map((comment) => (
-                    <Comment key={comment.id} comment={comment}/>
-                ))}
-            </CardFooter>        
-            
-        )
-    }
+
+    const num = commentsToRender;
+    const logEntryId = posts[0].log_entry_id;
+
+    return (
+        <CardFooter>
+            {comments.length === 0 ? <p>No Comments</p>: num === 0 ?
+                <Link
+                    to={`/log-entry/${logEntryId}`}
+                    onClick={(e) => handleClick(e)}
+                >
+                    Comments: {comments.length}
+                </Link>:
+                <p>Comments: </p>
+            }
+            {comments.slice(0, num).map((comment) => (
+                <Comment key={comment.id} comment={comment}/>
+            ))}
+        </CardFooter>      
+    )
 }
 
 export default Comments

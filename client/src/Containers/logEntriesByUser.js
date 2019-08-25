@@ -5,9 +5,6 @@ import LogEntry from '../Components/logEntry';
 
 class LogEntriesByUser extends Component {
 
-    // componentDidMount() {
-
-    // }
     render() {
         let logEntries = this.props.logEntryData;
         return (

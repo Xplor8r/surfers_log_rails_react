@@ -5,9 +5,6 @@ import LogEntry from '../Components/logEntry';
 
 class LogEntriesBySurfSpot extends Component {
 
-    // componentDidMount() {
-    //     window.scrollTo(0, 0)
-    // }
     render() {
         let logEntries = this.props.logEntryData;
         return (
