@@ -56,7 +56,7 @@ div.spinner-grow {
   text-decoration: none;
 }
 
-a:focus {
+a:focus, .close:focus {
   outline:none !important;
 }
 
