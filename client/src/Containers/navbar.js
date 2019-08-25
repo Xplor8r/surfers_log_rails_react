@@ -1,5 +1,5 @@
 import React, { useState }from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, Media } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
 import CountryLink from '../Components/linkToCountry'
 import SurfSpotLink from '../Components/linkToSurfSpot'
@@ -15,11 +15,9 @@ const NavBarComponent = ({countries,surfSpots}) => {
 
   return (
     <Navbar sticky="top" style={{backgroundColor: "#7cbcc6"}} light expand="md">
-      <NavbarBrand>
-        <Link to={'/'}>
+      <Link className="navbar-brand" to={'/'} onClick={()=>window.scrollTo(0, 0)}>
           <Media src={surfLogo} height={60} alt="Surfers Log Logo" />
-        </Link>
-      </NavbarBrand>
+      </Link>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>

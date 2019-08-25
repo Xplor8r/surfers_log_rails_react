@@ -16,6 +16,7 @@ class SurfSpotLink extends Component {
     handleSurfSpotLinkClick = (id) => {
         this.props.beginDataFetch();
         this.props.fetchLogEntryDataBySurfSpot(id);
+        window.scrollTo(0, 0);
     }
     render() {
         let surfSpot = this.props.surfSpot

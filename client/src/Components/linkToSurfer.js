@@ -16,6 +16,7 @@ class SurferLink extends Component {
     handleSurferLinkClick = (id) => {
         this.props.beginDataFetch();
         this.props.fetchLogEntryDataByUser(id);
+        window.scrollTo(0, 0);
     }
     render() {
         let surfer = this.props.surfer

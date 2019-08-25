@@ -4,12 +4,10 @@ import { Col } from 'reactstrap';
 import LogEntry from '../Components/logEntry';
 
 class LogEntriesByUser extends Component {
-    componentWillMount(){
 
-    }
-    componentDidMount() {
-        window.scrollTo(0, 0)
-    }
+    // componentDidMount() {
+
+    // }
     render() {
         let logEntries = this.props.logEntryData;
         return (

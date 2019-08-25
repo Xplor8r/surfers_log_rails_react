@@ -5,9 +5,6 @@ import LogEntry from '../Components/logEntry';
 
 class LogEntriesByCountry extends Component {
 
-    componentDidMount() {
-        window.scrollTo(0, 0)
-    }
     render() {
         let dataFetch = this.props.dataFetch;
         let logEntries = this.props.logEntryData;

@@ -8,6 +8,9 @@ class AllLogEntries extends Component {
     componentWillMount(){
         this.props.fetchLogEntryData();
     }
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
     render() {
         let logEntries = this.props.logEntryData;
         return (

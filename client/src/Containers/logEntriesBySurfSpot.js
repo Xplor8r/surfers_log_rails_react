@@ -4,12 +4,10 @@ import { Col } from 'reactstrap';
 import LogEntry from '../Components/logEntry';
 
 class LogEntriesBySurfSpot extends Component {
-    componentWillMount(){
 
-    }
-    componentDidMount() {
-        window.scrollTo(0, 0)
-    }
+    // componentDidMount() {
+    //     window.scrollTo(0, 0)
+    // }
     render() {
         let logEntries = this.props.logEntryData;
         return (
