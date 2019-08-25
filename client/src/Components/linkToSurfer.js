@@ -12,17 +12,20 @@ class SurferLink extends Component {
         this.handleSurferLinkClick = this.handleSurferLinkClick.bind(this);
         this.state = {
         };
-      }
+    }
+
     handleSurferLinkClick = (id) => {
         this.props.beginDataFetch();
         this.props.fetchLogEntryDataByUser(id);
         window.scrollTo(0, 0);
     }
+    
     render() {
         let surfer = this.props.surfer
         return (
             <DropdownItem className="justify-content-center">
                 <Link
+                    className="coral"
                     to={`/surfer/${surfer.slug}`}
                     onClick={() => this.handleSurferLinkClick(surfer.id)}
                 >

@@ -1,5 +1,4 @@
 import { endDataFetch } from './dataFetch'
-import { beginDataFetch } from './dataFetch'
 
 export const fetchLogEntryData = () => {
     return dispatch => {
@@ -24,7 +23,6 @@ export const fetchLogEntryDataByCountry = (id) => {
         fetch('/RailsApi/log_entries/country/' + id, { method: 'GET' })
         .then(response => response.json())
         .then(logEntryData => {
-            dispatch(beginDataFetch())
             dispatch(getLogEntryData(logEntryData))
             dispatch(endDataFetch())
         })
@@ -36,7 +34,6 @@ export const fetchLogEntryDataBySurfSpot = (id) => {
         fetch('/RailsApi/log_entries/surf_spot/' + id, { method: 'GET' })
         .then(response => response.json())
         .then(logEntryData => {
-            dispatch(beginDataFetch())
             dispatch(getLogEntryData(logEntryData))
             dispatch(endDataFetch())
         })

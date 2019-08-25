@@ -70,7 +70,7 @@ class ModalForm extends Component {
                                     <Input type="password" id="password" name="password" placeholder="Password"
                                         onChange={(event) => this.handleOnChange(event)} />
                                 </FormGroup>
-                                <Button color="link" type="submit">{this.props.form}</Button>
+                                <Button color="link" className="coral" type="submit">{this.props.form}</Button>
                             </Form>
                         </div>
                     </ModalBody>

@@ -60,6 +60,7 @@ const LogEntry = ({logEntry}) => {
             lines={!expanded && lines}
             ellipsis={(
               <span>... <Link 
+                className="coral"
                 to={`/log-entry/${logEntry.id}`}
                 onClick={(e) => toggleLines(e)}
                 >

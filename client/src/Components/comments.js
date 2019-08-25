@@ -18,6 +18,7 @@ const Comments = ({posts}) => {
         <CardFooter>
             {comments.length === 0 ? <p>No Comments</p>: num === 0 ?
                 <Link
+                    className="coral"
                     to={`/log-entry/${logEntryId}`}
                     onClick={(e) => handleClick(e)}
                 >

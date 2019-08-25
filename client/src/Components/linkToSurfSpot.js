@@ -12,17 +12,20 @@ class SurfSpotLink extends Component {
         this.handleSurfSpotLinkClick = this.handleSurfSpotLinkClick.bind(this);
         this.state = {
         };
-      }
+    }
+
     handleSurfSpotLinkClick = (id) => {
         this.props.beginDataFetch();
         this.props.fetchLogEntryDataBySurfSpot(id);
         window.scrollTo(0, 0);
     }
+    
     render() {
         let surfSpot = this.props.surfSpot
         return (
             <DropdownItem className="justify-content-center">
                 <Link
+                    className="coral"
                     to={`/surf-spot/${surfSpot.slug}`}
                     onClick={() => this.handleSurfSpotLinkClick(surfSpot.id)}
                 >
