@@ -29,7 +29,7 @@ class SurfSpotLink extends Component {
                     to={`/surf-spot/${surfSpot.slug}`}
                     onClick={() => this.handleSurfSpotLinkClick(surfSpot.id)}
                 >
-                    {this.props.display === 'nav' ?
+                    {this.props.display === 'spot' ?
                         <Truncate lines={1} width={150}>
                             {surfSpot.name}
                         </Truncate>:

@@ -29,7 +29,7 @@ class CountryLink extends Component {
                     to={`/country/${country.slug}`}
                     onClick={() => this.handleCountryLinkClick(country.id)}
                 >
-                    {this.props.display === 'nav' ?
+                    {this.props.display === 'country' ?
                         <Truncate lines={1} width={150}>  
                                 {country.name}
                         </Truncate>:
