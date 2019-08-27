@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import Moment from 'react-moment'
+import Moment from 'react-moment';
 import Truncate from 'react-truncate';
 import StarRatingComponent from 'react-star-rating-component';
-import { Card, CardImg, CardText, CardBody,
+import { Card, CardText, CardBody,
   CardTitle, CardHeader } from 'reactstrap';
 import Comments from './comments'
+import ModalImage from './modalImage'
 import  { Link } from 'react-router-dom';
 
 const LogEntry = ({logEntry}) => {
@@ -40,22 +41,22 @@ const LogEntry = ({logEntry}) => {
         {logEntry.surf_spot.name} {logEntry.country.name}
       </CardHeader>
       <CardBody>
-        {logEntry.swell_1_size &&
-          <CardText>
-            Swell: {logEntry.swell_1_size} ft {logEntry.swell_1_direction}
-          </CardText>
-        }
-        {logEntry.wave_count &&
-          <CardText>
-            Wave Count: {logEntry.wave_count}
-          </CardText>
-        }
-        {logEntry.wind_direction &&
-          <CardText>
-            Wind: {logEntry.wind_direction} @ {logEntry.wind_speed} mph
-          </CardText>
-        }
-        <CardText>
+            {logEntry.swell_1_size &&
+              <CardText>
+                Swell: {logEntry.swell_1_size} ft {logEntry.swell_1_direction}
+              </CardText>
+            }
+            {logEntry.wave_count &&
+              <CardText>
+                Wave Count: {logEntry.wave_count}
+              </CardText>
+            }
+            {logEntry.wind_direction &&
+              <CardText>
+                Wind: {logEntry.wind_direction} @ {logEntry.wind_speed} mph
+              </CardText>
+            }
+                    <CardText>
           <Truncate 
             lines={!expanded && lines}
             ellipsis={(
@@ -73,12 +74,7 @@ const LogEntry = ({logEntry}) => {
           </Truncate>
         </CardText>   
         {logEntry.image_url &&
-          <CardImg
-            bottom
-            width='50%'
-            src={logEntry.image_url}
-            alt={"Surfing at " + logEntry.surf_spot.name}
-          />
+          <ModalImage logEntry={logEntry}/>
         }
       </CardBody>
       <Comments posts={logEntry.posts}/>
