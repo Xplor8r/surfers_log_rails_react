@@ -17,7 +17,7 @@ import LogEntriesBySurfSpot from './Containers/logEntriesBySurfSpot';
 import ShowLogEntry from './Containers/showLogEntry';
 import NavBarComponent from './Containers/navbar';
 import SideBar from './Containers/sidebar';
-
+import SurfReport from './Components/surfReport';
 
 class App extends Component {
   componentWillMount(){
@@ -49,6 +49,7 @@ class App extends Component {
                   <Route exact path="/surfer/:slug" component={LogEntriesByUser} />
                   <Route exact path="/log-entry/:id" component={ShowLogEntry}/>
                 </Switch>
+                <SurfReport/>
               </Row>
             }
           </Container>
