@@ -1,8 +1,9 @@
 import React from 'react';
-import { Nav, Card, CardBody, CardImg, CardHeader, CardText, Col, ListGroup, ListGroupItem }  from 'reactstrap';
+import { Nav, Card, CardBody, CardImg, CardHeader, Media, Col, ListGroup, ListGroupItem }  from 'reactstrap';
 import Country from '../Components/sideBarCountry';
 import SurfSpot from '../Components/sideBarSurfSpot';
 import header from '../images/surfers-log-header.gif'
+import Pic from "../images/mikeysurf1.jpg";
 
 const SideBar = ({countries, surfSpots}) => {
     let countriesWithLogEntries = countries.filter(a=>a.log_entries.length > 0);
@@ -51,7 +52,9 @@ const SideBar = ({countries, surfSpots}) => {
                     src={header}
                     alt={"Surfer Log"}
                 />
-                <CardText>Ad Goes Here</CardText>
+                <CardHeader>Ad Goes Here</CardHeader>
+                <Media width="100%" src={Pic} alt="Mike surfing" />
+
             </Card>
         </Col>
     )

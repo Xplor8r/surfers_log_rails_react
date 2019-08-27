@@ -11,7 +11,7 @@ class LogEntriesByCountry extends Component {
         
         if (!dataFetch) {
             return (
-                <Col xs="9" style={{ padding: '0px'}}>
+                <Col xs="6" style={{ padding: '0px'}}>
                     {logEntries.map((logEntry) => (
                         <LogEntry key={logEntry.id} logEntry={logEntry} />
                     ))}
