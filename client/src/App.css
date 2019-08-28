@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .App-logo {
@@ -63,3 +64,5 @@ a:focus, .close:focus {
 button.dropdown-item:active {
   background-color: #7cbcc6;
 }
+
+
