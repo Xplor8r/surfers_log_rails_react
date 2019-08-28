@@ -3,7 +3,7 @@ import { Nav, Card, CardBody, CardImg, CardHeader, Media, Col, ListGroup, ListGr
 import Country from '../Components/sideBarCountry';
 import SurfSpot from '../Components/sideBarSurfSpot';
 import header from '../images/surfers-log-header.gif'
-import Pic from "../images/mikeysurf1.jpg";
+import Pic from "../images/Trunks_05_1024x1024.jpg";
 
 const SideBar = ({countries, surfSpots}) => {
     let countriesWithLogEntries = countries.filter(a=>a.log_entries.length > 0);
@@ -52,8 +52,8 @@ const SideBar = ({countries, surfSpots}) => {
                     src={header}
                     alt={"Surfer Log"}
                 />
-                <CardHeader>Ad Goes Here</CardHeader>
-                <Media width="100%" src={Pic} alt="Mike surfing" />
+                <CardHeader><strong>Ad Goes Here</strong></CardHeader>
+                <Media width="100%" src={Pic} alt="Trunks Ad" />
 
             </Card>
         </Col>
