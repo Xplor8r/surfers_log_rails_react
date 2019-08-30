@@ -63,6 +63,7 @@ class ModalForm extends Component {
                                         type="text"
                                         id="userName"
                                         name="userName"
+                                        value={this.state.userName}
                                         placeholder="Surfer Name"
                                         onChange={(event) => this.handleOnChange(event)}
                                     />
@@ -72,6 +73,7 @@ class ModalForm extends Component {
                                     <Input
                                         type="email"
                                         id="email"
+                                        value={this.state.email}
                                         name="email"
                                         placeholder="Surfer Email"
                                         onChange={(event) => this.handleOnChange(event)}
@@ -82,6 +84,7 @@ class ModalForm extends Component {
                                     <Input
                                         type="password"
                                         id="password"
+                                        value={this.state.password}
                                         name="password"
                                         placeholder="Password"
                                         onChange={(event) => this.handleOnChange(event)}
