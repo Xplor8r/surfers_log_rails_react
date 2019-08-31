@@ -1,3 +1,23 @@
+import { endDataFetch } from './dataFetch'
+
+export const fetchSurferData = () => {
+    return dispatch => {
+        fetch('/RailsApi/users', { method: 'GET' })
+        .then(response => response.json())
+        .then(surfers => {
+            dispatch(getSurfers(surfers));
+            dispatch(endDataFetch());
+        })
+    }    
+}
+
+const getSurfers = surfers => {
+    return {
+        type: 'GET_SURFERS',
+        surfers
+    };
+}
+
 export const createSurfer = (input) => {
     return dispatch => {
         const surfer = {
