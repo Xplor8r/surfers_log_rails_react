@@ -13,7 +13,7 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
 
   const countriesWithLogEntries = countries.filter(a=>a.log_entries.length > 0);
   const surfSpotsWithLogEntries = surfSpots.filter(a=>a.log_entries.length > 0);
-  console.log(surfers)
+
   return (
     <Navbar sticky="top" style={{backgroundColor: "#7cbcc6"}} light expand="md">
       <Link className="navbar-brand" to={'/'} onClick={()=>window.scrollTo(0, 0)}>
