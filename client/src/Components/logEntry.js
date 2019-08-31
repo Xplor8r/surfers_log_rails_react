@@ -36,7 +36,15 @@ const LogEntry = ({logEntry}) => {
             />
           }
         </CardTitle>
-        <strong>{logEntry.user.name}</strong>
+        <Link
+          className="coral"
+          to={{
+            pathname: `/surfer/${logEntry.user.slug}`,
+            state: {prop: logEntry.user}
+          }}
+        >
+          {logEntry.user.name}
+        </Link>
         <br/>
         {logEntry.surf_spot.name} {logEntry.country.name}
       </CardHeader>
