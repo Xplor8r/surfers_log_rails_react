@@ -6,6 +6,12 @@ import { fetchLogEntryData } from '../Actions/logEntries';
 
 class AllLogEntries extends Component {
     componentWillMount(){
+        this.unlisten = this.props.history.listen((location) => {
+            if (location.state === {}){
+                this.props.fetchLogEntryData();
+                window.scrollTo(0, 0);
+            }
+        });
         this.props.fetchLogEntryData();
     }
     componentDidMount() {

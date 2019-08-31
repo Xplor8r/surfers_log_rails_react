@@ -6,6 +6,13 @@ import { fetchLogEntryDataByCountry } from '../Actions/logEntries';
 
 class LogEntriesByCountry extends Component {
     componentWillMount(){
+        this.unlisten = this.props.history.listen((location) => {
+           if (location.state.type === 'country'){
+                let id = location.state.prop.id
+                this.props.fetchLogEntryDataByCountry(id);
+                window.scrollTo(0, 0);
+            }
+        });
         let id = this.props.location.state.prop.id
         this.props.fetchLogEntryDataByCountry(id);
     }

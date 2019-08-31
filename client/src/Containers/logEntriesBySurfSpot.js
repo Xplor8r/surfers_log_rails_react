@@ -6,11 +6,18 @@ import { fetchLogEntryDataBySurfSpot } from '../Actions/logEntries';
 
 class LogEntriesBySurfSpot extends Component {
     componentWillMount(){
+        this.unlisten = this.props.history.listen((location) => {
+            if (location.state.type === 'surf-spot'){
+                let id = location.state.prop.id
+                this.props.fetchLogEntryDataBySurfSpot(id);
+                window.scrollTo(0, 0);
+            }
+        });
         let id = this.props.location.state.prop.id
         this.props.fetchLogEntryDataBySurfSpot(id);
     }
     componentDidMount() {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }
 
     render() {

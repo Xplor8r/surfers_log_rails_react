@@ -6,6 +6,13 @@ import { fetchLogEntryDataByUser } from '../Actions/logEntries';
 
 class LogEntriesByUser extends Component {
     componentWillMount(){
+        this.unlisten = this.props.history.listen((location) => {
+            if (location.state.type === 'surfer'){
+                let id = location.state.prop.id
+                this.props.fetchLogEntryDataByUser(id);
+                window.scrollTo(0, 0);
+            }
+        });
         let id = this.props.location.state.prop.id
         this.props.fetchLogEntryDataByUser(id);
     }
