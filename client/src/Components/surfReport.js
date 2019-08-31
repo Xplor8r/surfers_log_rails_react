@@ -10,10 +10,10 @@ const SurfReport = () => {
       <Card style={{position: 'sticky', top: '120px'}}>
         <CardImg top width="100%" src={Pic} alt="Noaa swell image" />
         <CardBody style={{textAlign: 'left'}}>
-          <CardTitle><strong>Get Local Surf Report</strong></CardTitle>
+          <CardTitle className="coral"><strong>Get Local Surf Report</strong></CardTitle>
           <CardSubtitle><Moment local></Moment></CardSubtitle>
           <CardText>local Surf Report goes here</CardText>
-          <Button>Get Report</Button>
+          <Button outline color="secondary">Get Report</Button>
         </CardBody>
       </Card>
     </Col>

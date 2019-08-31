@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button, Form,
-     FormGroup, Label, Input, NavItem, NavLink, Media } from "reactstrap";
+    FormGroup, Label, Input, NavItem, NavLink, Media } from "reactstrap";
 import surfLogo from '../images/surfers_log_logo.jpg';
 import { createSurfer } from '../Actions/surfers'
 
@@ -47,7 +47,12 @@ class ModalForm extends Component {
                 </NavLink>
                 <Modal isOpen={this.state.modal} toggle={this.modalToggle}>    
                     <ModalHeader toggle={this.modalToggle}>
-                        <Media src={surfLogo} height={60} width={60} alt="Surfers Log Logo" />
+                        <Media
+                            src={surfLogo}
+                            height={60}
+                            width={60}
+                            alt="Surfers Log Logo"
+                        />
                         {this.props.form}
                     </ModalHeader>
                     <ModalBody>
@@ -91,8 +96,8 @@ class ModalForm extends Component {
                                     />
                                 </FormGroup>
                                 <Button
-                                    color="link"
-                                    className="coral"
+                                    outline
+                                    color="secondary"
                                     type="submit"
                                 >
                                     {this.props.form}

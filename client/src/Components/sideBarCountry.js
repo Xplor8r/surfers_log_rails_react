@@ -12,12 +12,21 @@ const Country = ({country}) => {
             </DropdownToggle>
             
             <DropdownMenu left="true">
-                <DynamicLink display={'log entries'} prop={country} type={'country'}/>
+                <DynamicLink
+                    display={'log entries'}
+                    prop={country}
+                    type={'country'}
+                />
                 <DropdownItem divider />
 
                 <DropdownItem header>Surf Spots</DropdownItem>       
                 {country.surf_spots.map((surfSpot)=> (
-                    <DynamicLink display={'name'} prop={surfSpot} type={'surf-spot'} key={surfSpot.id}/>
+                    <DynamicLink
+                        display={'name'}
+                        prop={surfSpot}
+                        type={'surf-spot'}
+                        key={surfSpot.id}
+                    />
                 ))}
             </DropdownMenu>
         </UncontrolledDropdown>
