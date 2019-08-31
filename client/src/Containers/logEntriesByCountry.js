@@ -6,7 +6,7 @@ import { fetchLogEntryDataByCountry } from '../Actions/logEntries';
 
 class LogEntriesByCountry extends Component {
     componentWillMount(){
-        let id = this.props.location.state.country.id
+        let id = this.props.location.state.prop.id
         this.props.fetchLogEntryDataByCountry(id);
     }
     componentDidMount() {

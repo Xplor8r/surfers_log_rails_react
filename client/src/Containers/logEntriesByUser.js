@@ -2,30 +2,33 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Col } from 'reactstrap';
 import LogEntry from '../Components/logEntry';
+import { fetchLogEntryDataByUser } from '../Actions/logEntries';
 
 class LogEntriesByUser extends Component {
+    componentWillMount(){
+        let id = this.props.location.state.prop.id
+        this.props.fetchLogEntryDataByUser(id);
+    }
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
 
     render() {
-        let dataFetch = this.props.dataFetch;
         let logEntries = this.props.logEntryData;
-        
-        if (!dataFetch) {
-            return (
-                <Col xs="6" style={{ padding: '0px'}}>
-                    {logEntries.map((logEntry) => (
-                        <LogEntry key={logEntry.id} logEntry={logEntry} />
-                    ))}
-                </Col>
-            )
-        }
+        return (
+            <Col xs="6" style={{ padding: '0px'}}>
+                {logEntries.length > 0 && logEntries.map((logEntry) => (
+                    <LogEntry key={logEntry.id} logEntry={logEntry} />
+                ))}
+            </Col>
+        )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        logEntryData: state.logEntryData,
-        dataFetch: state.dataFetch
+        logEntryData: state.logEntryData
     }
-  }
+}
   
-export default connect(mapStateToProps)(LogEntriesByUser)
+export default connect(mapStateToProps, { fetchLogEntryDataByUser })(LogEntriesByUser)

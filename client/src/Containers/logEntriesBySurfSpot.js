@@ -2,14 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Col } from 'reactstrap';
 import LogEntry from '../Components/logEntry';
+import { fetchLogEntryDataBySurfSpot } from '../Actions/logEntries';
 
 class LogEntriesBySurfSpot extends Component {
+    componentWillMount(){
+        let id = this.props.location.state.prop.id
+        this.props.fetchLogEntryDataBySurfSpot(id);
+    }
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
 
     render() {
-        let dataFetch = this.props.dataFetch;
         let logEntries = this.props.logEntryData;
-        
-        if (!dataFetch) {
             return (
                 <Col xs="6" style={{ padding: '0px'}}>
                     {logEntries.map((logEntry) => (
@@ -17,15 +22,14 @@ class LogEntriesBySurfSpot extends Component {
                     ))}
                 </Col>
             )
-        }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         logEntryData: state.logEntryData,
-        dataFetch: state.dataFetch
+
     }
-  }
+}
   
-export default connect(mapStateToProps)(LogEntriesBySurfSpot)
+export default connect(mapStateToProps, { fetchLogEntryDataBySurfSpot })(LogEntriesBySurfSpot)
