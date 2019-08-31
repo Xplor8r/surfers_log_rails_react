@@ -40,7 +40,10 @@ const LogEntry = ({logEntry}) => {
           className="coral"
           to={{
             pathname: `/surfer/${logEntry.user.slug}`,
-            state: {prop: logEntry.user}
+            state: {
+              prop: logEntry.user,
+              type: 'surfer'
+            }
           }}
         >
           {logEntry.user.name}

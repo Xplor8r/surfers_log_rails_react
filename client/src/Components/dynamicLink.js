@@ -10,7 +10,10 @@ const DynamicLink = ({prop, display, type}) => {
                 className="coral"
                 to={{
                     pathname: `/${type}/${prop.slug}`,
-                    state: {prop: prop}
+                    state: {
+                        prop: prop,
+                        type: type
+                    }
                 }}
             >
                 {display === 'name' ?

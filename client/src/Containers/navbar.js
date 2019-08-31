@@ -16,7 +16,10 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
     <Navbar sticky="top" style={{backgroundColor: "#7cbcc6"}} light expand="md">
       <Link
         className="navbar-brand"
-        to={'/'}
+        to={{
+          pathname:'/',
+          state: {}
+        }}
         onClick={()=>window.scrollTo(0, 0)}
       >
         <Media src={surfLogo} height={60} alt="Surfers Log Logo" />

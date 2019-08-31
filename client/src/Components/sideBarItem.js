@@ -27,7 +27,7 @@ const SideBarItem = ({prop, type}) => {
                 <DynamicLink
                     display={'log entries'}
                     prop={prop}
-                    type={'surf-spot'}
+                    type={type}
                 />
                 <DropdownItem divider />
 
