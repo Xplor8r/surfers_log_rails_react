@@ -1,8 +1,7 @@
 import React from 'react';
 import { Badge, UncontrolledDropdown, DropdownToggle,
     DropdownMenu, DropdownItem } from 'reactstrap';
-import SurfSpotLink from './linkToSurfSpot';
-import CountryLink from './linkToCountry';
+import DynamicLink from './dynamicLink';
 
 const Country = ({country}) => {
     return (
@@ -13,12 +12,12 @@ const Country = ({country}) => {
             </DropdownToggle>
             
             <DropdownMenu left="true">
-                <CountryLink display={'side'} country={country}/>
+                <DynamicLink display={'log entries'} prop={country} type={'country'}/>
                 <DropdownItem divider />
 
                 <DropdownItem header>Surf Spots</DropdownItem>       
                 {country.surf_spots.map((surfSpot)=> (
-                    <SurfSpotLink display={'spot'} surfSpot={surfSpot} key={surfSpot.id}/>
+                    <DynamicLink display={'name'} prop={surfSpot} type={'surf-spot'} key={surfSpot.id}/>
                 ))}
             </DropdownMenu>
         </UncontrolledDropdown>

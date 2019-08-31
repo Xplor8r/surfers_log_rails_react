@@ -1,8 +1,7 @@
 import React from 'react';
 import { Badge, UncontrolledDropdown, DropdownToggle,
     DropdownMenu, DropdownItem } from 'reactstrap';
-import SurferLink from './linkToSurfer'
-import SurfSpotLink from './linkToSurfSpot'
+import DynamicLink from './dynamicLink'
 
 const SurfSpot = ({surfSpot}) => {
     let logEntries = surfSpot.log_entries;
@@ -23,12 +22,12 @@ const SurfSpot = ({surfSpot}) => {
                 </DropdownToggle>
 
                 <DropdownMenu left="true">
-                    <SurfSpotLink display={'side'} surfSpot={surfSpot}/>
+                <DynamicLink display={'log entries'} prop={surfSpot} type={'surf-spot'} />
                     <DropdownItem divider />
 
                     <DropdownItem header>Surfers</DropdownItem>            
                     {surfers.map((surfer)=> (
-                        <SurferLink surfer={surfer} key={surfer.id}/>
+                        <DynamicLink display={'name'} prop={surfer} type={'surfer'} key={surfer.id}/>
 
                     ))}
                 </DropdownMenu>

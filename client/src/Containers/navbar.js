@@ -1,9 +1,7 @@
 import React, { useState }from 'react';
 import { Collapse, Navbar, NavbarToggler, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
-import CountryLink from '../Components/linkToCountry'
-import SurfSpotLink from '../Components/linkToSurfSpot'
-import SurferLink from '../Components/linkToSurfer'
+import DynamicLink from '../Components/dynamicLink'
 import ModalForm from '../Components/modalForm'
 import  { Link } from 'react-router-dom';
 
@@ -31,7 +29,7 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
             </DropdownToggle>           
             <DropdownMenu right>
               {surfers.map((surfer) => (
-                <SurferLink surfer={surfer} key={surfer.id}/>
+                <DynamicLink display={'name'} type={'surfer'} prop={surfer} key={surfer.id}/>
               ))}
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -42,7 +40,7 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
             </DropdownToggle>           
             <DropdownMenu right>
               {countriesWithLogEntries.map((country) => (
-                <CountryLink display={'country'} country={country} key={country.id}/>
+                <DynamicLink display={'name'} type={'country'} prop={country} key={country.id}/>
               ))}
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -53,7 +51,7 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
             </DropdownToggle>   
             <DropdownMenu right>
               {surfSpotsWithLogEntries.map((surfSpot) => (
-                <SurfSpotLink display={'spot'} surfSpot={surfSpot} key={surfSpot.id}/>
+                <DynamicLink display={'name'} type={'surf-spot'} prop={surfSpot} key={surfSpot.id}/>
               ))}
             </DropdownMenu>
           </UncontrolledDropdown>
