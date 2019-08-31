@@ -14,8 +14,12 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
 
   return (
     <Navbar sticky="top" style={{backgroundColor: "#7cbcc6"}} light expand="md">
-      <Link className="navbar-brand" to={'/'} onClick={()=>window.scrollTo(0, 0)}>
-          <Media src={surfLogo} height={60} alt="Surfers Log Logo" />
+      <Link
+        className="navbar-brand"
+        to={'/'}
+        onClick={()=>window.scrollTo(0, 0)}
+      >
+        <Media src={surfLogo} height={60} alt="Surfers Log Logo" />
       </Link>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
@@ -29,7 +33,12 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
             </DropdownToggle>           
             <DropdownMenu right>
               {surfers.map((surfer) => (
-                <DynamicLink display={'name'} type={'surfer'} prop={surfer} key={surfer.id}/>
+                <DynamicLink
+                  display={'name'}
+                  type={'surfer'}
+                  prop={surfer}
+                  key={surfer.id}
+                />
               ))}
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -40,7 +49,12 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
             </DropdownToggle>           
             <DropdownMenu right>
               {countriesWithLogEntries.map((country) => (
-                <DynamicLink display={'name'} type={'country'} prop={country} key={country.id}/>
+                <DynamicLink
+                  display={'name'}
+                  type={'country'}
+                  prop={country}
+                  key={country.id}
+                />
               ))}
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -51,7 +65,12 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
             </DropdownToggle>   
             <DropdownMenu right>
               {surfSpotsWithLogEntries.map((surfSpot) => (
-                <DynamicLink display={'name'} type={'surf-spot'} prop={surfSpot} key={surfSpot.id}/>
+                <DynamicLink
+                  display={'name'}
+                  type={'surf-spot'}
+                  prop={surfSpot}
+                  key={surfSpot.id}
+                />
               ))}
             </DropdownMenu>
           </UncontrolledDropdown>

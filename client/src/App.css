@@ -65,4 +65,8 @@ button.dropdown-item:active {
   background-color: #7cbcc6;
 }
 
+.modal-header, .modal-footer {
+  background-color: #7cbcc6;
+}
+
 

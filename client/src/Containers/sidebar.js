@@ -52,7 +52,7 @@ const SideBar = ({countries, surfSpots}) => {
                     src={header}
                     alt={"Surfer Log"}
                 />
-                <CardHeader><strong>Ad Goes Here</strong></CardHeader>
+                <CardHeader className="coral"><strong>Ad Goes Here</strong></CardHeader>
                 <Media width="100%" src={Pic} alt="Trunks Ad" />
 
             </Card>
