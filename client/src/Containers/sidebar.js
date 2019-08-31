@@ -1,7 +1,6 @@
 import React from 'react';
 import { Nav, Card, CardBody, CardImg, CardHeader, Media, Col, ListGroup, ListGroupItem }  from 'reactstrap';
-import Country from '../Components/sideBarCountry';
-import SurfSpot from '../Components/sideBarSurfSpot';
+import SideBarItem from '../Components/sideBarItem';
 import header from '../images/surfers-log-header.gif'
 import Pic from "../images/Trunks_05_1024x1024.jpg";
 
@@ -22,7 +21,9 @@ const SideBar = ({countries, surfSpots}) => {
                                 key={surfSpot.id}
                                 className="justify-content-center"
                             >
-                                <Nav><SurfSpot surfSpot={surfSpot}/></Nav>
+                                <Nav>
+                                    <SideBarItem prop={surfSpot} type={'surf-spot'}/>
+                                </Nav>
                             </ListGroupItem>
                         ))}
                     </ListGroup>
@@ -39,7 +40,9 @@ const SideBar = ({countries, surfSpots}) => {
                                 key={country.id}
                                 className="justify-content-center"
                             >
-                                <Nav><Country country={country}/></Nav>
+                                <Nav>
+                                    <SideBarItem prop={country} type={'country'}/>
+                                </Nav>
                             </ListGroupItem>
                         ))}
                     </ListGroup>
