@@ -4,6 +4,7 @@ import  { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 import { fetchCountryData } from './Actions/countries';
 import { fetchSurfSpotData } from './Actions/surfSpots';
+import { fetchSurferData } from './Actions/surfers';
 
 import './App.css';
 import 'moment-timezone';
@@ -23,6 +24,7 @@ class App extends Component {
   componentWillMount(){
     this.props.fetchCountryData();
     this.props.fetchSurfSpotData();
+    this.props.fetchSurferData();
   }
   componentDidMount() {
     window.scrollTo(0, 0)
@@ -31,12 +33,13 @@ class App extends Component {
     let dataFetch = this.props.dataFetch;
     let countries = this.props.countryData;
     let surfSpots = this.props.surfSpotData;
+    let surfers = this.props.surferData;
 
     return (
       <Router>
         <div className="App">
           <Media src={header} width={'100%'} alt="Surfers Log" />
-          <NavBarComponent countries={countries} surfSpots={surfSpots}/>
+          <NavBarComponent countries={countries} surfSpots={surfSpots} surfers={surfers} />
           <header className="App-header">
           <Container className="content">
             {dataFetch ? <Spinner type="grow" />:
@@ -64,14 +67,16 @@ const mapStateToProps = (state) => {
   return {
     dataFetch: state.dataFetch,
     countryData: state.countryData,
-    surfSpotData: state.surfSpotData
+    surfSpotData: state.surfSpotData,
+    surferData: state.surferData
 
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchCountryData: () => dispatch(fetchCountryData()),
-    fetchSurfSpotData: () => dispatch(fetchSurfSpotData())
+    fetchSurfSpotData: () => dispatch(fetchSurfSpotData()),
+    fetchSurferData: () => dispatch(fetchSurferData())
   }
 }
 

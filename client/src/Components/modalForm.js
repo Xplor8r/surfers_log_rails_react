@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button, Form,
      FormGroup, Label, Input, NavItem, NavLink, Media } from "reactstrap";
 import surfLogo from '../images/surfers_log_logo.jpg';
-import { createSurfer } from '../Actions/createSurfer'
+import { createSurfer } from '../Actions/surfers'
 
 class ModalForm extends Component {
     constructor(props) {
