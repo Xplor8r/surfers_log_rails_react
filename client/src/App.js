@@ -11,10 +11,7 @@ import 'moment-timezone';
 import { Container, Row, Media, Spinner } from 'reactstrap';
 import header from './images/surfers-log-header.gif'
 
-import AllLogEntries from './Containers/allLogEntries';
-import LogEntriesByCountry from './Containers/logEntriesByCountry';
-import LogEntriesByUser from './Containers/logEntriesByUser';
-import LogEntriesBySurfSpot from './Containers/logEntriesBySurfSpot';
+import LogEntries from './Containers/logEntriesContainer';
 import ShowLogEntry from './Containers/showLogEntry';
 import NavBarComponent from './Containers/navbar';
 import SideBar from './Containers/sidebar';
@@ -39,17 +36,45 @@ class App extends Component {
       <Router>
         <div className="App">
           <Media src={header} width={'100%'} alt="Surfers Log" />
-          <NavBarComponent countries={countries} surfSpots={surfSpots} surfers={surfers} />
+          <NavBarComponent
+            countries={countries}
+            surfSpots={surfSpots}
+            surfers={surfers}
+          />
           <header className="App-header">
           <Container className="content">
             {dataFetch ? <Spinner type="grow" />:
               <Row >
                 <SideBar countries={countries} surfSpots={surfSpots}/>
                 <Switch>
-                  <Route exact path="/" component={AllLogEntries}/>
-                  <Route exact path="/country/:slug" component={LogEntriesByCountry}/>
-                  <Route exact path="/surf-spot/:slug" component={LogEntriesBySurfSpot}/>
-                  <Route exact path="/surfer/:slug" component={LogEntriesByUser} />
+                  <Route exact path="/"
+                    render={(props)=> {
+                      return (
+                        <LogEntries {...props} type={'all'}/>
+                      )
+                    }}
+                  />
+                  <Route exact path="/country/:slug"
+                    render={(props)=> {
+                      return(
+                        <LogEntries {...props} type={'country'}/>
+                      )
+                    }}
+                  />
+                  <Route exact path="/surf-spot/:slug"
+                    render={(props)=> {
+                      return (
+                        <LogEntries {...props} type={'surf-spot'}/>
+                      )
+                    }}
+                  />
+                  <Route exact path="/surfer/:slug"
+                    render={(props)=> {
+                      return(
+                        <LogEntries {...props} type={'surfer'}/>
+                      )
+                    }}
+                  />
                   <Route exact path="/log-entry/:id" component={ShowLogEntry}/>
                 </Switch>
                 <SurfReport/>
