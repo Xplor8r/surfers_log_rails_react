@@ -7,11 +7,13 @@ class User < ApplicationRecord
     has_many :countries, through: :log_entries
     has_many :friendships
     has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+    
     validates :name, :slug, presence: true
     validates :email, presence: true, uniqueness: true
 
     has_secure_password
-  
+    scope :sorted, ->{order(name: :asc)}
+
     def friends
       friends_array = friendships.map{|friendship| friendship.friend if friendship.confirmed}
       friends_array + inverse_friendships.map{|friendship| friendship.user if friendship.confirmed}

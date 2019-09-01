@@ -1,18 +1,15 @@
 require 'pry'
 class UsersController < ApplicationController
-    before_action :user, only: [:show, :log_entries]
-
-    def log_entries
-        @log_entries = LogEntry.where(user: @user).sorted.includes(:user, :country, :surf_spot)
-        render json: @log_entries, include: ['user', 'surf_spot.name', 'country.name', 'posts.user.name', 'posts.log_entry_id']
-    end
-
+    before_action :user, only: [:show]
     def show
-        render json: @user, include: ['log_entries.user', 'log_entries.surf_spot', 'log_entries.country', 'log_entries.posts', 'log_entries.posts.user']
+        render json: @user, include: [
+            'friendships', 'surf_spots', 'countries', 'log_entries.user',
+            'log_entries.surf_spot', 'log_entries.country', 'log_entries.posts',
+            'log_entries.posts.user']
     end
 
     def index
-        @users = User.all
+        @users = User.all.sorted
         render json: @users
     end
   
