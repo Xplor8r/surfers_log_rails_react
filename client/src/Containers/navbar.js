@@ -1,7 +1,7 @@
 import React, { useState }from 'react';
-import { Collapse, Navbar, NavbarToggler, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, Media } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Nav, Media } from 'reactstrap';
 import surfLogo from '../images/surfers_log_logo.jpg'
-import DynamicLink from '../Components/dynamicLink'
+import NavBarItem from '../Components/navBarItem'
 import ModalForm from '../Components/modalForm'
 import  { Link } from 'react-router-dom';
 
@@ -30,53 +30,9 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
           <ModalForm form={"Log In"}/>
           <ModalForm form={"Sign Up"}/>
 
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
-              Surfers
-            </DropdownToggle>           
-            <DropdownMenu right>
-              {surfers.map((surfer) => (
-                <DynamicLink
-                  display={'name'}
-                  type={'surfer'}
-                  prop={surfer}
-                  key={surfer.id}
-                />
-              ))}
-            </DropdownMenu>
-          </UncontrolledDropdown>
-
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
-              Countries
-            </DropdownToggle>           
-            <DropdownMenu right>
-              {countriesWithLogEntries.map((country) => (
-                <DynamicLink
-                  display={'name'}
-                  type={'country'}
-                  prop={country}
-                  key={country.id}
-                />
-              ))}
-            </DropdownMenu>
-          </UncontrolledDropdown>
-
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
-              Surf Spots
-            </DropdownToggle>   
-            <DropdownMenu right>
-              {surfSpotsWithLogEntries.map((surfSpot) => (
-                <DynamicLink
-                  display={'name'}
-                  type={'surf-spot'}
-                  prop={surfSpot}
-                  key={surfSpot.id}
-                />
-              ))}
-            </DropdownMenu>
-          </UncontrolledDropdown>
+          <NavBarItem type={'surfer'} list={surfers} />
+          <NavBarItem type={'country'} list={countriesWithLogEntries} />
+          <NavBarItem type={'surf-spot'} list={surfSpotsWithLogEntries} />
         </Nav>
       </Collapse>
     </Navbar>
