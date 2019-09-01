@@ -44,8 +44,7 @@ export const fetchLogEntryDataByUser = (id) => {
     return dispatch => {
         fetch('/RailsApi/users/' + id, { method: 'GET' })
         .then(response => response.json())
-        .then(userData => {
-            let logEntryData = userData.log_entries
+        .then(logEntryData => {
             dispatch(getLogEntryData(logEntryData))
             dispatch(endDataFetch())
         })

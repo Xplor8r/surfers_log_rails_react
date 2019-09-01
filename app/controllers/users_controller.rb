@@ -1,11 +1,12 @@
 require 'pry'
 class UsersController < ApplicationController
     before_action :user, only: [:show]
+
     def show
-        render json: @user, include: [
-            'friendships', 'surf_spots', 'countries', 'log_entries.user',
-            'log_entries.surf_spot', 'log_entries.country', 'log_entries.posts',
-            'log_entries.posts.user']
+        @log_entries = @user.log_entries.sorted
+        render json: @log_entries, include: [
+            'user', 'surf_spot.name', 'country.name',
+            'posts.user.name', 'posts.log_entry_id']
     end
 
     def index
