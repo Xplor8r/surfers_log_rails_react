@@ -13,7 +13,7 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
   const surfSpotsWithLogEntries = surfSpots.filter(a=>a.log_entries.length > 0);
 
   return (
-    <Navbar sticky="top" style={{backgroundColor: "#7cbcc6"}} light expand="md">
+    <Navbar sticky="top" style={{top: '-1px', backgroundColor: "#7cbcc6"}} light expand="md">
       <Link
         className="navbar-brand"
         to={{
