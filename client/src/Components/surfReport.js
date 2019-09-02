@@ -11,9 +11,16 @@ const SurfReport = () => {
         <CardImg top width="100%" src={Pic} alt="Noaa swell image" />
         <CardBody style={{textAlign: 'left'}}>
           <CardTitle className="coral"><strong>Get Local Surf Report</strong></CardTitle>
-          <CardSubtitle><Moment local></Moment></CardSubtitle>
+          <CardSubtitle><Moment local format="MM/DD/YYYY"></Moment></CardSubtitle>
           <CardText>local Surf Report goes here</CardText>
-          <Button outline color="secondary">Get Report</Button>
+          <Button 
+            outline color="secondary"
+            href="https://magicseaweed.com/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Get Report
+          </Button>
         </CardBody>
       </Card>
     </Col>
