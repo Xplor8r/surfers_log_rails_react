@@ -1,8 +1,7 @@
 import React from 'react';
-import { Nav, Card, CardBody, CardImg, CardHeader, Media, Col, ListGroup, ListGroupItem }  from 'reactstrap';
+import { Nav, Card, CardBody, CardHeader, Col, ListGroup, ListGroupItem }  from 'reactstrap';
 import SideBarItem from '../Components/sideBarItem';
-import header from '../images/surfers-log-header.gif'
-import Pic from "../images/Trunks_05_1024x1024.jpg";
+import Ad from '../Components/ad';
 
 const SideBar = ({countries, surfSpots}) => {
     let countriesWithLogEntries = countries.filter(a=>a.log_entries.length > 0);
@@ -29,6 +28,7 @@ const SideBar = ({countries, surfSpots}) => {
                     </ListGroup>
                 </CardBody>
             </Card>
+
             <Card>
                 <CardBody style={{padding: '0px'}}>
                     <CardHeader style={{paddingTop: '.5rem'}}>
@@ -48,17 +48,8 @@ const SideBar = ({countries, surfSpots}) => {
                     </ListGroup>
                 </CardBody>
             </Card>
-            <Card style={{position: 'sticky', top: '120px'}}>
-                <CardImg
-                    top
-                    width='50%'
-                    src={header}
-                    alt={"Surfer Log"}
-                />
-                <CardHeader className="coral"><strong>Ad Goes Here</strong></CardHeader>
-                <Media width="100%" src={Pic} alt="Trunks Ad" />
 
-            </Card>
+            <Ad />
         </Col>
     )
 }
