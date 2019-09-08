@@ -9,86 +9,104 @@ import ModalImage from './modalImage'
 import  { Link } from 'react-router-dom';
 
 const LogEntry = ({logEntry}) => {
-  const [lines] = useState(2);
+  const [lines] = useState(3);
   const [expanded, setExpanded] = useState(false);
   const toggleLines = (e) => {
     e.preventDefault();
     setExpanded(!expanded);
   }
+  const {
+    id, date, time, posts, rating, swell_1_size, swell_1_direction, swell_2_size,
+    swell_2_direction, swell_3_size, swell_3_direction, wind_speed,
+    wind_direction, wave_count, image_url, country, surf_spot, user
+  } = logEntry;
   return (
     <Card style={{ textAlign: 'left'}} key={logEntry.id}>
       <CardHeader>
         <CardTitle style={{float: 'right'}}>
-          {logEntry.date && logEntry.time ?
+          {date && time ?
             <Moment parse="YYYYMMDD h:mm" format="MM/DD/YYYY h:mm a">
-              {logEntry.date} {logEntry.time}
+              {date} {time}
             </Moment>:
             <Moment parse="YYYYMMDD" format="MM/DD/YYYY">
-              {logEntry.date}
+              {date}
             </Moment>
           }<br/>
 
-          {logEntry.rating && 
+          {rating && 
             <StarRatingComponent 
               name={'rating'} 
               starCount={5}
-              value={logEntry.rating}
+              value={rating}
             />
           }
         </CardTitle>
-        <Link
-          className="coral"
+        <Link className="coral"
           to={{
-            pathname: `/surfer/${logEntry.user.slug}`,
+            pathname: `/surfer/${user.slug}`,
             state: {
-              prop: logEntry.user,
+              prop: user,
               type: 'surfer'
             }
           }}
         >
-          {logEntry.user.name}
+          {user.name}
         </Link>
         <br/>
-        {logEntry.surf_spot.name} {logEntry.country.name}
+        {surf_spot.name} {country.name}
       </CardHeader>
       <CardBody>
-            {logEntry.swell_1_size &&
-              <CardText>
-                Swell: {logEntry.swell_1_size} ft {logEntry.swell_1_direction}
-              </CardText>
-            }
-            {logEntry.wave_count &&
-              <CardText>
-                Wave Count: {logEntry.wave_count}
-              </CardText>
-            }
-            {logEntry.wind_direction &&
-              <CardText>
-                Wind: {logEntry.wind_direction} @ {logEntry.wind_speed} mph
-              </CardText>
-            }
-                    <CardText>
+        <CardText>
           <Truncate 
             lines={!expanded && lines}
             ellipsis={(
-              <span>... <Link 
-                className="coral"
-                to={`/log-entry/${logEntry.id}`}
-                onClick={(e) => toggleLines(e)}
+              <span className="coral" style={{float: 'right'}}>
+                ...<Link 
+                  className="coral"
+                  to={`/log-entry/${id}`}
+                  onClick={(e) => toggleLines(e)}
                 >
                   See More
                 </Link>
               </span>
             )}
           >
-            {logEntry.posts[0].content}
-          </Truncate>
+            {posts[0].content}<br/>
+            {(swell_1_size || swell_1_direction || wave_count ||
+              wind_direction || wind_speed) && <span><br/><br/></span>
+            }
+            {swell_1_size &&
+              <span>
+                <b>Swell: </b>{swell_1_size} ft {swell_1_direction}
+              </span>
+            }
+            {swell_2_size &&
+              <span>
+                <b> | </b>{swell_2_size} ft {swell_2_direction}
+              </span>
+            }
+            {swell_3_size &&
+              <span>
+                <b> | </b>{swell_3_size} ft {swell_3_direction}
+              </span>
+            }
+            {wave_count &&
+              <span>
+                <b> Wave Count: </b>{wave_count}
+              </span>
+            }
+            {wind_direction &&
+              <span>
+                <b> Wind: </b>{wind_direction} @ {wind_speed} mph
+              </span>
+            }
+          </Truncate><br/>
         </CardText>   
-        {logEntry.image_url &&
+        {image_url &&
           <ModalImage logEntry={logEntry}/>
         }
       </CardBody>
-      <Comments posts={logEntry.posts}/>
+      <Comments posts={posts}/>
     </Card>
   )
 }
