@@ -22,7 +22,7 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
         }}
         onClick={()=>window.scrollTo(0, 0)}
       >
-        <Media src={surfLogo} height={60} alt="Surfers Log Logo" />
+        <Media src={surfLogo} className="logo" alt="Surfers Log Logo" />
       </Link>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>

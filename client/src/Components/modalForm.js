@@ -49,8 +49,7 @@ class ModalForm extends Component {
                     <ModalHeader toggle={this.modalToggle}>
                         <Media
                             src={surfLogo}
-                            height={60}
-                            width={60}
+                            className="logo"
                             alt="Surfers Log Logo"
                         />
                         {this.props.form}
