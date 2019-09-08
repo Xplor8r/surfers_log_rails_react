@@ -6,11 +6,22 @@ import { fetchLogEntryData } from '../Actions/logEntries';
 import { fetchLogEntryDataByCountry } from '../Actions/logEntries';
 import { fetchLogEntryDataBySurfSpot } from '../Actions/logEntries';
 import { fetchLogEntryDataByUser } from '../Actions/logEntries';
+import Ad from '../Components/ad';
 
 class LogEntries extends Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            isMobile: false
+        }
+    }
 
     componentWillMount(){
-        this.unlisten = this.props.history.listen((location) => { 
+        window.innerWidth < 415 &&
+        this.setState({
+            isMobile: true
+        });
+        this.unlisten = this.props.history.listen((location) => {
             let newId;
             switch (location.state.type) {
                 case ('country'):
@@ -55,16 +66,23 @@ class LogEntries extends Component {
     }
 
     componentDidMount() {
+        window.addEventListener('resize', () => {
+            this.setState({
+                isMobile: window.innerWidth < 415
+            });
+        });
         window.scrollTo(0, 0)
     }
 
     render() {
+        let {isMobile} = this.state
         let logEntries = this.props.logEntryData;
         return (
-            <Col xs="6" style={{ padding: '0px'}}>
+            <Col xs={isMobile ? "12": "6"} style={{ padding: '0px'}}>
                 {logEntries.map((logEntry) => (
                     <LogEntry key={logEntry.id} logEntry={logEntry} />
                 ))}
+                {isMobile && <Ad />}
             </Col>
         )
     }
