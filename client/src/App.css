@@ -28,6 +28,11 @@ div.spinner-grow {
   margin: 2rem .5rem 1rem;
 }
 
+.card-header {
+  font-size: calc(10px + 1.25vmin);
+  font-weight: bolder;
+}
+
 .card-img-bottom:hover {
   transition-duration: 1s;
   transform: scale(1.05);

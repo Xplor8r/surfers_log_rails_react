@@ -12,7 +12,7 @@ const SideBar = ({countries, surfSpots}) => {
             <Card>
                 <CardBody style={{padding: '0px'}}>
                     <CardHeader style={{paddingTop: '.5rem'}}>
-                        <h3><strong>Surf Spots</strong></h3>
+                        Surf Spots
                     </CardHeader>
                     <ListGroup>
                         {surfSpotsWithLogEntries.map((surfSpot) => (
@@ -32,7 +32,7 @@ const SideBar = ({countries, surfSpots}) => {
             <Card>
                 <CardBody style={{padding: '0px'}}>
                     <CardHeader style={{paddingTop: '.5rem'}}>
-                        <h3><strong>Countries</strong></h3>
+                        Countries
                     </CardHeader>
                     <ListGroup>
                         {countriesWithLogEntries.map((country) => (
