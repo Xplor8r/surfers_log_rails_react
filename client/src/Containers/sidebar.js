@@ -3,51 +3,40 @@ import { Nav, Card, CardBody, CardHeader, Col, ListGroup, ListGroupItem }  from 
 import SideBarItem from '../Components/sideBarItem';
 import Ad from '../Components/ad';
 
+const SideBarCard = ({list, type}) => {
+    return (
+        <Card>
+            <CardBody style={{padding: '0px'}}>
+                <CardHeader style={{paddingTop: '.5rem'}}>
+                    {type === 'surf-spot' ?<span>Surf Spots</span>:
+                        <span>Countries</span>
+                    }
+                </CardHeader>
+                <ListGroup>
+                    {list.map((prop) => (
+                        <ListGroupItem 
+                            key={prop.id}
+                            className="justify-content-center"
+                        >
+                            <Nav>
+                                <SideBarItem prop={prop} type={type}/>
+                            </Nav>
+                        </ListGroupItem>
+                    ))}
+                </ListGroup>
+            </CardBody>
+        </Card>
+    )
+}
+
 const SideBar = ({countries, surfSpots}) => {
     let countriesWithLogEntries = countries.filter(a=>a.log_entries.length > 0);
     let surfSpotsWithLogEntries = surfSpots.filter(a=>a.log_entries.length > 0);
 
     return (
         <Col xs="3" style={{ padding: '0px'}}>
-            <Card>
-                <CardBody style={{padding: '0px'}}>
-                    <CardHeader style={{paddingTop: '.5rem'}}>
-                        Surf Spots
-                    </CardHeader>
-                    <ListGroup>
-                        {surfSpotsWithLogEntries.map((surfSpot) => (
-                            <ListGroupItem 
-                                key={surfSpot.id}
-                                className="justify-content-center"
-                            >
-                                <Nav>
-                                    <SideBarItem prop={surfSpot} type={'surf-spot'}/>
-                                </Nav>
-                            </ListGroupItem>
-                        ))}
-                    </ListGroup>
-                </CardBody>
-            </Card>
-
-            <Card>
-                <CardBody style={{padding: '0px'}}>
-                    <CardHeader style={{paddingTop: '.5rem'}}>
-                        Countries
-                    </CardHeader>
-                    <ListGroup>
-                        {countriesWithLogEntries.map((country) => (
-                            <ListGroupItem 
-                                key={country.id}
-                                className="justify-content-center"
-                            >
-                                <Nav>
-                                    <SideBarItem prop={country} type={'country'}/>
-                                </Nav>
-                            </ListGroupItem>
-                        ))}
-                    </ListGroup>
-                </CardBody>
-            </Card>
+            <SideBarCard list={surfSpotsWithLogEntries} type={'surf-spot'} />
+            <SideBarCard list={countriesWithLogEntries} type={'country'} />
 
             <Ad />
         </Col>
