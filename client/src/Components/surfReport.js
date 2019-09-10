@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody,
+import { Card, CardImg, CardText, CardBody, CardFooter,
   CardTitle, CardSubtitle, Button, Col } from 'reactstrap';
 import Moment from 'react-moment';
 import Pic from "../images/noaa.jpg";
@@ -13,15 +13,17 @@ const SurfReport = () => {
           <CardTitle className="coral"><strong>Get Local Surf Report</strong></CardTitle>
           <CardSubtitle><Moment local format="MM/DD/YYYY"></Moment></CardSubtitle>
           <CardText>local Surf Report goes here</CardText>
+        </CardBody>
+        <CardFooter>
           <Button 
             outline color="secondary"
-            href="https://magicseaweed.com/"
+            href="https://magicseaweed.com/California-South-Surf-Forecast/17/"
             rel="noopener noreferrer"
             target="_blank"
           >
             Get Report
           </Button>
-        </CardBody>
+        </CardFooter>
       </Card>
     </Col>
   );
