@@ -6,6 +6,7 @@ import { fetchLogEntryData } from '../Actions/logEntries';
 import { fetchLogEntryDataByCountry } from '../Actions/logEntries';
 import { fetchLogEntryDataBySurfSpot } from '../Actions/logEntries';
 import { fetchLogEntryDataByUser } from '../Actions/logEntries';
+import { clearLogEntryData } from '../Actions/logEntries';
 import Ad from '../Components/ad';
 
 class LogEntries extends Component {
@@ -19,7 +20,6 @@ class LogEntries extends Component {
 
     componentWillMount(){
         window.innerWidth < 415 && this.setState({isMobile: true});
-
         const fetch = (type, id) => {
             switch (type) {
                 case ('country'):      
@@ -38,6 +38,7 @@ class LogEntries extends Component {
         }
 
         this.unlisten = this.props.history.listen((location) => {
+            this.props.clearLogEntryData();
             const stateType = location.state.type
             this.setState({type: stateType});
             let newId = 0;
@@ -64,7 +65,7 @@ class LogEntries extends Component {
         const {isMobile} = this.state;
         const logEntries = this.props.logEntryData;
         const {type} = this.state;
-        let header = 'Log Entries';
+        let header = 'Surf. Log. Share.';
         if (logEntries.length > 0) {
             if (type === 'surfer'){
                 header = logEntries[0].user.name;
@@ -102,7 +103,8 @@ const actions = () => {
         fetchLogEntryData,
         fetchLogEntryDataByUser,
         fetchLogEntryDataByCountry,
-        fetchLogEntryDataBySurfSpot
+        fetchLogEntryDataBySurfSpot,
+        clearLogEntryData
     }
 }
   

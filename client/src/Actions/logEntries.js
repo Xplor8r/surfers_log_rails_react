@@ -18,6 +18,12 @@ const getLogEntryData = logEntryData => {
     };
 }
 
+export const clearLogEntryData = () => {
+    return {
+        type: 'CLEAR_LOG_ENTRY_DATA'
+    };
+}
+
 export const fetchLogEntryDataByCountry = (id) => {
     return dispatch => {
         fetch('/RailsApi/log_entries/country/' + id, { method: 'GET' })
