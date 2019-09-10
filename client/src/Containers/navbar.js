@@ -18,7 +18,9 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
         className="navbar-brand"
         to={{
           pathname:'/',
-          state: {}
+          state: {
+            type: 'all'
+          }
         }}
         onClick={()=>window.scrollTo(0, 0)}
       >
