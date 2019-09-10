@@ -33,8 +33,8 @@ const NavBarComponent = ({countries, surfSpots, surfers}) => {
           <ModalForm form={"Sign Up"}/>
 
           <NavBarItem type={'surfer'} list={surfers} />
-          <NavBarItem type={'country'} list={countriesWithLogEntries} />
           <NavBarItem type={'surf-spot'} list={surfSpotsWithLogEntries} />
+          <NavBarItem type={'country'} list={countriesWithLogEntries} />
         </Nav>
       </Collapse>
     </Navbar>

@@ -44,10 +44,7 @@ const LogEntry = ({logEntry}) => {
         <Link className="coral"
           to={{
             pathname: `/surfer/${user.slug}`,
-            state: {
-              prop: user,
-              type: 'surfer'
-            }
+            state: { prop: user, type: 'surfer' }
           }}
         >
           {user.name}
@@ -73,33 +70,14 @@ const LogEntry = ({logEntry}) => {
           >
             {posts[0].content}<br/>
             {(swell_1_size || swell_1_direction || wave_count ||
-              wind_direction || wind_speed) && <span><br/><br/></span>
-            }
-            {swell_1_size &&
-              <span>
-                <b>Swell: </b>{swell_1_size} ft {swell_1_direction}
-              </span>
-            }
-            {swell_2_size &&
-              <span>
-                <b> | </b>{swell_2_size} ft {swell_2_direction}
-              </span>
-            }
-            {swell_3_size &&
-              <span>
-                <b> | </b>{swell_3_size} ft {swell_3_direction}
-              </span>
-            }
-            {wave_count &&
-              <span>
-                <b> Wave Count: </b>{wave_count}
-              </span>
-            }
-            {wind_direction &&
-              <span>
-                <b> Wind: </b>{wind_direction} @ {wind_speed} mph
-              </span>
-            }
+              wind_direction || wind_speed) && <span><br/><br/></span>}
+            
+            {swell_1_size && <span><b>Swell: </b>{swell_1_size} ft {swell_1_direction}</span>}
+            {swell_2_size && <span><b> | </b>{swell_2_size} ft {swell_2_direction}</span>}
+            {swell_3_size && <span><b> | </b>{swell_3_size} ft {swell_3_direction}</span>}
+
+            {wave_count && <span><b> Wave Count: </b>{wave_count}</span>}
+            {wind_direction && <span><b> Wind: </b>{wind_direction} @ {wind_speed} mph</span>}
           </Truncate><br/>
         </CardText>   
         {image_url &&
