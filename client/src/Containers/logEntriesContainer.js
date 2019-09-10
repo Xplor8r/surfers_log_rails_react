@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Col } from 'reactstrap';
+import { Col, Card, CardHeader } from 'reactstrap';
 import LogEntry from '../Components/logEntry';
 import { fetchLogEntryData } from '../Actions/logEntries';
 import { fetchLogEntryDataByCountry } from '../Actions/logEntries';
@@ -12,73 +12,76 @@ class LogEntries extends Component {
     constructor(props) {
         super(props);
         this.state ={
-            isMobile: false
+            isMobile: false,
+            type: 'all'
         }
     }
 
     componentWillMount(){
-        window.innerWidth < 415 &&
-        this.setState({
-            isMobile: true
-        });
-        this.unlisten = this.props.history.listen((location) => {
-            let newId;
-            switch (location.state.type) {
-                case ('country'):
-                    newId = location.state.prop.id;
-                    this.props.fetchLogEntryDataByCountry(newId);
-                    window.scrollTo(0, 0);
+        window.innerWidth < 415 && this.setState({isMobile: true});
+
+        const fetch = (type, id) => {
+            switch (type) {
+                case ('country'):      
+                    this.props.fetchLogEntryDataByCountry(id);
                     break;
                 case ('surf-spot'):
-                    newId = location.state.prop.id;
-                    this.props.fetchLogEntryDataBySurfSpot(newId);
-                    window.scrollTo(0, 0);
+                    this.props.fetchLogEntryDataBySurfSpot(id);
                     break;
                 case ('surfer'):
-                    newId = location.state.prop.id;
-                    this.props.fetchLogEntryDataByUser(newId);
-                    window.scrollTo(0, 0);
+                    this.props.fetchLogEntryDataByUser(id);
                     break;
                 default:
                     this.props.fetchLogEntryData();
-                    window.scrollTo(0, 0);
                     break;
-            } 
-        });
-        let id;
-        switch (this.props.type) {
-            case ('country'):
-                id = this.props.location.state.prop.id
-                this.props.fetchLogEntryDataByCountry(id);
-                break;
-            case ('surf-spot'):
-                id = this.props.location.state.prop.id
-                this.props.fetchLogEntryDataBySurfSpot(id);
-                break;
-            case ('surfer'):
-                id = this.props.location.state.prop.id
-                this.props.fetchLogEntryDataByUser(id);
-                break;
-            default:
-                this.props.fetchLogEntryData();
-                break;
+            }
         }
+
+        this.unlisten = this.props.history.listen((location) => {
+            const stateType = location.state.type
+            this.setState({type: stateType});
+            let newId = 0;
+            if(stateType !== 'all') { newId = location.state.prop.id }
+            fetch(stateType, newId)
+            window.scrollTo(0, 0);
+        });
+
+        const propType = this.props.type;
+        this.setState({type: propType});
+        let propId = 0;
+        if (propType !== 'all'){ propId = this.props.location.state.prop.id }
+        fetch(propType, propId);
     }
 
     componentDidMount() {
         window.addEventListener('resize', () => {
-            this.setState({
-                isMobile: window.innerWidth < 415
-            });
+            this.setState({isMobile: window.innerWidth < 415});
         });
         window.scrollTo(0, 0)
     }
 
     render() {
-        let {isMobile} = this.state
-        let logEntries = this.props.logEntryData;
+        const {isMobile} = this.state;
+        const logEntries = this.props.logEntryData;
+        const {type} = this.state;
+        let header = 'Log Entries';
+        if (logEntries.length > 0) {
+            if (type === 'surfer'){
+                header = logEntries[0].user.name;
+            } else if (type === 'country') {
+                header = logEntries[0].country.name;
+            } else if (type === 'surf-spot') {
+                header = logEntries[0].surf_spot.name;
+            }
+        }
+
         return (
             <Col xs={isMobile ? "12": "6"} style={{ padding: '0px'}}>
+                <Card>
+                    <CardHeader>
+                        <span>{header}</span>
+                    </CardHeader>
+                </Card>
                 {logEntries.map((logEntry) => (
                     <LogEntry key={logEntry.id} logEntry={logEntry} />
                 ))}
