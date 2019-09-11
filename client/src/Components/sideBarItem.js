@@ -20,8 +20,8 @@ const SideBarItem = ({prop, type}) => {
     return (
         <UncontrolledDropdown nav inNavbar>
             <DropdownToggle className="coral" nav caret>
-                {prop.name} {' '}
-                <Badge pill>{prop.log_entries.length}</Badge>          
+                <Badge pill>{prop.log_entries.length}</Badge>
+                {'  '} {prop.name}      
             </DropdownToggle>
             <DropdownMenu left="true">
                 <DynamicLink

@@ -3,7 +3,7 @@ import  { Link } from 'react-router-dom';
 import { DropdownItem } from 'reactstrap';
 import Truncate from 'react-truncate';
 
-const DynamicLink = ({prop, display, type}) => {
+const DynamicLink = ({prop, display, type, navToggle}) => {
     return (
         <DropdownItem className="justify-content-center">
             <Link
@@ -15,6 +15,7 @@ const DynamicLink = ({prop, display, type}) => {
                         type: type
                     }
                 }}
+                onClick={navToggle}
             >
                 {display === 'name' ?
                     <Truncate lines={1} width={150}>  

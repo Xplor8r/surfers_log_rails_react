@@ -2,7 +2,7 @@ import React from 'react';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import DynamicLink from './dynamicLink';
 
-const NavBarItem = ({list, type}) => {
+const NavBarItem = ({list, type, navToggle}) => {
 	return (
 		<UncontrolledDropdown nav inNavbar>
 			{type === 'surfer' ?
@@ -19,6 +19,7 @@ const NavBarItem = ({list, type}) => {
 						type={type}
 						prop={item}
 						key={item.id}
+						navToggle={navToggle}
 					/>
 				))}
 			</DropdownMenu>

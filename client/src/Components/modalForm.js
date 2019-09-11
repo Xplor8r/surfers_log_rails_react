@@ -39,10 +39,16 @@ class ModalForm extends Component {
         this.props.createSurfer(this.state)
     }
 
+    handleLink(event) {
+        event.preventDefault();
+        this.modalToggle();
+        this.props.navToggle();
+    }
+
     render() {
         return (
             <NavItem>
-                <NavLink href="#" onClick={this.modalToggle}>
+                <NavLink href="#" onClick={(event) => this.handleLink(event)}>
                     {this.props.form}
                 </NavLink>
                 <Modal isOpen={this.state.modal} toggle={this.modalToggle}>    
