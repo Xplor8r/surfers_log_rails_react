@@ -18,64 +18,75 @@ import SideBar from './Containers/sidebar';
 import SurfReport from './Components/surfReport';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      isMobile: false
+    }
+  }
+
   componentWillMount(){
+    window.innerWidth < 415 && this.setState({isMobile: true});
     this.props.fetchCountryData();
     this.props.fetchSurfSpotData();
     this.props.fetchSurferData();
   }
+
   componentDidMount() {
+    window.addEventListener('resize', () => {
+      this.setState({isMobile: window.innerWidth < 415});
+    });
     window.scrollTo(0, 0)
   }
   render() {
-    let dataFetch = this.props.dataFetch;
-    let countries = this.props.countryData;
-    let surfSpots = this.props.surfSpotData;
-    let surfers = this.props.surferData;
+    const { dataFetch, countryData, surfSpotData, surferData } = this.props;
+    const { isMobile } = this.state;
 
     return (
       <Router>
         <div className="App">
           <Media src={header} width={'100%'} alt="Surfers Log" />
           <NavBarComponent
-            countries={countries}
-            surfSpots={surfSpots}
-            surfers={surfers}
+            countries={countryData}
+            surfSpots={surfSpotData}
+            surfers={surferData}
+            isMobile={isMobile}
           />
           <header className="App-header">
           <Container className="content">
             {dataFetch ? <Spinner type="grow" />:
               <Row >
-                <SideBar countries={countries} surfSpots={surfSpots}/>
+                <SideBar countries={countryData} surfSpots={surfSpotData}/>
                 <Switch>
                   <Route exact path="/"
                     render={(props)=> {
                       return (
-                        <LogEntries {...props} type={'all'}/>
+                        <LogEntries {...props} type={'all'} isMobile={isMobile}/>
                       )
                     }}
                   />
                   <Route exact path="/country/:slug"
                     render={(props)=> {
                       return(
-                        <LogEntries {...props} type={'country'}/>
+                        <LogEntries {...props} type={'country'} isMobile={isMobile}/>
                       )
                     }}
                   />
                   <Route exact path="/surf-spot/:slug"
                     render={(props)=> {
                       return (
-                        <LogEntries {...props} type={'surf-spot'}/>
+                        <LogEntries {...props} type={'surf-spot'} isMobile={isMobile}/>
                       )
                     }}
                   />
                   <Route exact path="/surfer/:slug"
                     render={(props)=> {
                       return(
-                        <LogEntries {...props} type={'surfer'}/>
+                        <LogEntries {...props} type={'surfer'} isMobile={isMobile}/>
                       )
                     }}
                   />
-                  <Route exact path="/log-entry/:id" component={ShowLogEntry}/>
+                  <Route exact path="/log-entry/:id" component={ShowLogEntry} isMobile={isMobile}/>
                 </Switch>
                 <SurfReport/>
               </Row>
