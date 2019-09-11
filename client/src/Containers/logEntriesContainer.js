@@ -13,13 +13,11 @@ class LogEntries extends Component {
     constructor(props) {
         super(props);
         this.state ={
-            isMobile: false,
             type: 'all'
         }
     }
 
     componentWillMount(){
-        window.innerWidth < 415 && this.setState({isMobile: true});
         const fetch = (type, id) => {
             switch (type) {
                 case ('country'):      
@@ -55,24 +53,20 @@ class LogEntries extends Component {
     }
 
     componentDidMount() {
-        window.addEventListener('resize', () => {
-            this.setState({isMobile: window.innerWidth < 415});
-        });
         window.scrollTo(0, 0)
     }
 
     render() {
-        const {isMobile} = this.state;
-        const logEntries = this.props.logEntryData;
+        const {isMobile, logEntryData} = this.props;
         const {type} = this.state;
         let header = 'Surf. Log. Share.';
-        if (logEntries.length > 0) {
+        if (logEntryData.length > 0) {
             if (type === 'surfer'){
-                header = logEntries[0].user.name;
+                header = logEntryData[0].user.name;
             } else if (type === 'country') {
-                header = logEntries[0].country.name;
+                header = logEntryData[0].country.name;
             } else if (type === 'surf-spot') {
-                header = logEntries[0].surf_spot.name;
+                header = logEntryData[0].surf_spot.name;
             }
         }
 
@@ -83,7 +77,7 @@ class LogEntries extends Component {
                         <span>{header}</span>
                     </CardHeader>
                 </Card>
-                {logEntries.map((logEntry) => (
+                {logEntryData.map((logEntry) => (
                     <LogEntry key={logEntry.id} logEntry={logEntry} />
                 ))}
                 {isMobile && <Ad />}
