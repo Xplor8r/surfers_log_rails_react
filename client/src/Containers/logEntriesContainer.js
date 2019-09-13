@@ -36,18 +36,18 @@ class LogEntries extends Component {
         }
 
         this.unlisten = this.props.history.listen((location) => {
-            this.props.clearLogEntryData();
+            let newId = 0;            
             const stateType = location.state.type
             this.setState({type: stateType});
-            let newId = 0;
+            this.props.clearLogEntryData();
             if(stateType !== 'all') { newId = location.state.prop.id }
-            fetch(stateType, newId)
+            fetch(stateType, newId);
             window.scrollTo(0, 0);
         });
 
+        let propId = 0;
         const propType = this.props.type;
         this.setState({type: propType});
-        let propId = 0;
         if (propType !== 'all'){ propId = this.props.location.state.prop.id }
         fetch(propType, propId);
     }
@@ -68,6 +68,8 @@ class LogEntries extends Component {
             } else if (type === 'surf-spot') {
                 header = logEntryData[0].surf_spot.name;
             }
+        } else {
+            header = 'No Log Entries'
         }
 
         return (
