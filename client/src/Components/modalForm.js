@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button, Form,
     FormGroup, Label, Input, NavItem, NavLink, Media } from "reactstrap";
 import surfLogo from '../images/surfers_log_logo.jpg';
@@ -9,6 +10,7 @@ class ModalForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            redirect: false,
             modal: false,
             userName: '',
             email: '',
@@ -36,16 +38,34 @@ class ModalForm extends Component {
     handleOnSignUpSubmit(event){
         event.preventDefault();
         this.modalToggle();
-        this.props.createSurfer(this.state)
+        this.props.createSurfer(this.state);
+        this.setState({redirect: true});
     }
 
     handleLink(event) {
         event.preventDefault();
         this.modalToggle();
-        this.props.navToggle();
+        if (this.props.navToggle !== undefined){
+            this.props.navToggle();
+        };
     }
 
+    jsFriendlyId() {
+        return this.state.userName.toString().toLowerCase()
+        .replace(/\s+/g, '-')         
+        .replace(/^-+/g, '')          
+        .replace(/-+$/g, '');          
+    } 
+
     render() {
+        if (this.state.redirect) {
+            return (
+                <Redirect to={{
+                    pathname: `/surfers/${this.jsFriendlyId()}`,
+                    state: {prop: this.state, type: 'surfer'}
+                }}/>
+            )
+        } else {
         return (
             <NavItem>
                 <NavLink href="#" onClick={(event) => this.handleLink(event)}>
@@ -116,6 +136,7 @@ class ModalForm extends Component {
                 </Modal>
             </NavItem>
         )
+    }
     }
 }
 
