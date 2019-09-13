@@ -1,4 +1,5 @@
 import { endDataFetch } from './dataFetch'
+import { fetchLogEntryDataByUser } from './logEntries';
 
 export const fetchSurferData = () => {
     return dispatch => {
@@ -42,6 +43,7 @@ export const createSurfer = (input) => {
         .then(response => response.json())
         .then(newSurfer =>{ 
             dispatch(addSurfer(newSurfer))
+            dispatch(fetchLogEntryDataByUser(newSurfer.id))
         })
     }  
 }
