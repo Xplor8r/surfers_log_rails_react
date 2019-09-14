@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { withRouter/*, Link */ } from 'react-router-dom';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button, Form,
     FormGroup, Label, Input, NavItem, NavLink, Media } from "reactstrap";
 import surfLogo from '../images/surfers_log_logo.jpg';
@@ -13,6 +13,7 @@ class ModalForm extends Component {
             redirect: false,
             modal: false,
             userName: '',
+            slug: '',
             email: '',
             password: ''
         };
@@ -37,9 +38,13 @@ class ModalForm extends Component {
 
     handleOnSignUpSubmit(event){
         event.preventDefault();
-        this.modalToggle();
         this.props.createSurfer(this.state);
-        this.setState({redirect: true});
+        this.setState({redirect: true, slug: this.jsFriendlyId()});
+        this.modalToggle();
+        this.props.history.push({
+            pathname: `/surfer/${this.jsFriendlyId()}`,
+            state: {prop: this.state, type: 'surfer'}
+        });
     }
 
     handleLink(event) {
@@ -58,14 +63,14 @@ class ModalForm extends Component {
     } 
 
     render() {
-        if (this.state.redirect) {
-            return (
-                <Redirect to={{
-                    pathname: `/surfers/${this.jsFriendlyId()}`,
-                    state: {prop: this.state, type: 'surfer'}
-                }}/>
-            )
-        } else {
+        // if (this.state.redirect) {
+        //     return (
+        //         <Redirect to={{
+        //             pathname: `/surfers/${this.jsFriendlyId()}`,
+        //             state: {prop: this.state, type: 'surfer'}
+        //         }}/>
+        //     )
+        // } else {
         return (
             <NavItem>
                 <NavLink href="#" onClick={(event) => this.handleLink(event)}>
@@ -137,7 +142,7 @@ class ModalForm extends Component {
             </NavItem>
         )
     }
-    }
+// }
 }
 
 const mapStateToProps = (state) => {
@@ -146,4 +151,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { createSurfer })(ModalForm);
+export default withRouter(connect(mapStateToProps, { createSurfer })(ModalForm));
