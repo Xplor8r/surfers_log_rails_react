@@ -1,10 +1,13 @@
-import React from 'react';
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+import React, { useState } from 'react';
+import { DropdownToggle, DropdownMenu, Dropdown } from 'reactstrap';
 import DynamicLink from './dynamicLink';
 
 const NavBarItem = ({list, type, navToggle}) => {
+	const [isOpen, setIsOpen] = useState(false);
+	const toggle = () => setIsOpen(!isOpen);
+
 	return (
-		<UncontrolledDropdown nav inNavbar>
+		<Dropdown direction="left" isOpen={isOpen} toggle={toggle} >
 			{type === 'surfer' ?
 				<DropdownToggle nav caret>Surfers</DropdownToggle>:
 				type === 'country' ?
@@ -12,7 +15,24 @@ const NavBarItem = ({list, type, navToggle}) => {
 				<DropdownToggle nav caret>Surf Spots</DropdownToggle>
 			}
 				
-			<DropdownMenu right>
+			<DropdownMenu
+				modifiers={{
+					setMaxHeight: {
+						enabled: true,
+						order: 890,
+						fn: (data) => {
+							return {
+								...data,
+								styles: {
+									...data.styles,
+									overflow: 'auto',
+									maxHeight: '45vh',
+								},
+							};
+						},
+					},
+				}}
+			>
 				{list.map((item) => (
 					<DynamicLink
 						display={'name'}
@@ -23,7 +43,7 @@ const NavBarItem = ({list, type, navToggle}) => {
 					/>
 				))}
 			</DropdownMenu>
-		</UncontrolledDropdown>
+		</Dropdown>
 	)
 }
 
