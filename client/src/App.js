@@ -24,14 +24,14 @@ class App extends Component {
       isMobile: false
     }
   }
-
-  componentWillMount(){
+  // set isMobile true if screen is less than 415 px fetch list of countries, surf spots, and surfers
+  UNSAFE_componentWillMount(){
     window.innerWidth < 415 && this.setState({isMobile: true});
     this.props.fetchCountryData();
     this.props.fetchSurfSpotData();
     this.props.fetchSurferData();
   }
-
+  // set isMobile true if screen resized to less than 415px auto scroll to top
   componentDidMount() {
     window.addEventListener('resize', () => {
       this.setState({isMobile: window.innerWidth < 415});
@@ -57,7 +57,7 @@ class App extends Component {
             {dataFetch ? <Spinner type="grow" />:
               <Row >
                 <SideBar countries={countryData} surfSpots={surfSpotData}/>
-                <Switch>
+                <Switch> {/* use render to pass type and isMobile props */}
                   <Route exact path="/"
                     render={(props)=> {
                       return (
