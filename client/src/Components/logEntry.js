@@ -9,17 +9,20 @@ import ModalImage from './modalImage'
 import  { Link } from 'react-router-dom';
 
 const LogEntry = ({logEntry}) => {
+  // use hooks for expanding truncated text
   const [lines] = useState(3);
   const [expanded, setExpanded] = useState(false);
   const toggleLines = (e) => {
     e.preventDefault();
     setExpanded(!expanded);
   }
+  // all log entry attributes
   const {
     id, date, time, posts, rating, swell_1_size, swell_1_direction, swell_2_size,
     swell_2_direction, swell_3_size, swell_3_direction, wind_speed,
     wind_direction, wave_count, image_url, country, surf_spot, user
   } = logEntry;
+  
   return (
     <Card style={{ textAlign: 'left'}} key={logEntry.id}>
       <CardHeader>
