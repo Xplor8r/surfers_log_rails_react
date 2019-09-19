@@ -16,8 +16,9 @@ class LogEntries extends Component {
             type: 'all'
         }
     }
-
-    componentWillMount(){
+    // use type prop to fetch specified log entry data
+    UNSAFE_componentWillMount(){
+        this.props.clearLogEntryData();
         const fetch = (type, id) => {
             switch (type) {
                 case ('country'):      
@@ -34,24 +35,23 @@ class LogEntries extends Component {
                     break;
             }
         }
-
+        // when url updates change type, set id and than call fetch
         this.unlisten = this.props.history.listen((location) => {
             let newId = 0;            
             const stateType = location.state.type
             this.setState({type: stateType});
-            this.props.clearLogEntryData();
             if(stateType !== 'all') { newId = location.state.prop.id }
             fetch(stateType, newId);
             window.scrollTo(0, 0);
         });
-
+        // on page refresh or intial site load change type, set id and than call fetch
         let propId = 0;
         const propType = this.props.type;
         this.setState({type: propType});
         if (propType !== 'all'){ propId = this.props.location.state.prop.id }
         fetch(propType, propId);
     }
-
+    // auto scroll to top
     componentDidMount() {
         window.scrollTo(0, 0)
     }
