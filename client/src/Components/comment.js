@@ -4,6 +4,7 @@ import { CardText } from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 const Comment = ({comment}) => {
+    // use hooks for expanding truncated text
     const [lines] = useState(1);
     const [expanded, setExpanded] = useState(false);
     const toggleLines = (e) => {
