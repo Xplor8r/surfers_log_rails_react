@@ -3,6 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, CardImg, Media } from 'reac
 import Moment from 'react-moment';
 
 const ModalImage = ({logEntry}) => {
+    // use hooks to toggle modal
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
