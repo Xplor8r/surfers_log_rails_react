@@ -3,6 +3,9 @@ import  { Link } from 'react-router-dom';
 import { DropdownItem } from 'reactstrap';
 import Truncate from 'react-truncate';
 
+// navToggle used for nav links only when isMobile is true
+// display used to dispay prop.name or Log Entries
+// type used to pass to logEntriesContainer and for pathname
 const DynamicLink = ({prop, display, type, navToggle}) => {
     return (
         <DropdownItem className="justify-content-center">
