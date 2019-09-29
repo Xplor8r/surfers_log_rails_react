@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { DropdownToggle, DropdownMenu, Dropdown } from 'reactstrap';
 import DynamicLink from './dynamicLink';
 
+// navToggle passed to DynamicLink for when isMobile
+// type passed to DynamicLink
 const NavBarItem = ({list, type, navToggle}) => {
+	// use hooks for dropdown menu toggle
 	const [isOpen, setIsOpen] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
 
