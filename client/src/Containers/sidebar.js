@@ -3,6 +3,7 @@ import { Nav, Card, CardBody, CardHeader, Col, ListGroup, ListGroupItem }  from 
 import SideBarItem from '../Components/sideBarItem';
 import Ad from '../Components/ad';
 
+// pass type to SideBarItem for different rendering
 const SideBarCard = ({list, type}) => {
     return (
         <Card>
@@ -30,6 +31,7 @@ const SideBarCard = ({list, type}) => {
 }
 
 const SideBar = ({countries, surfSpots}) => {
+    // create lists of countries and surfSpots that have log_entries
     let countriesWithLogEntries = countries.filter(a=>a.log_entries.length > 0);
     let surfSpotsWithLogEntries = surfSpots.filter(a=>a.log_entries.length > 0);
 
