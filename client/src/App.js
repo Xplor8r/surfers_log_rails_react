@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import  { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import  { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 import { fetchCountryData } from './Actions/countries';
 import { fetchSurfSpotData } from './Actions/surfSpots';
@@ -87,6 +87,7 @@ class App extends Component {
                     }}
                   />
                   <Route exact path="/log-entry/:id" component={ShowLogEntry} isMobile={isMobile}/>
+                  <Route render={() => <Redirect to={{pathname: "/"}} />} />
                 </Switch>
                 <SurfReport/>
               </Row>
