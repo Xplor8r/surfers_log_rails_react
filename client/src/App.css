@@ -50,6 +50,11 @@ div.spinner-grow {
   text-decoration: none;
 }
 
+.white, .white:hover {
+  color: white;
+  text-decoration: none;
+}
+
 a:focus, .close:focus {
   outline:none !important;
 }
