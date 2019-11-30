@@ -10,12 +10,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 1vmin);
+  font-size: calc(10px + .75vmin);
   color: #282c34;
 }
 
+.nav-item {
+  font-size: 1rem;
+}
+
 .logo {
-  width: 3.5rem;
+  width: 4rem;
+  border-radius: 4px;
 }
 
 div.spinner-grow {
@@ -29,7 +34,7 @@ div.spinner-grow {
 }
 
 .card-header {
-  font-size: calc(10px + 1.25vmin);
+  font-size: calc(10px + 1vmin);
   font-weight: bolder;
 }
 

@@ -10,14 +10,9 @@ import { clearLogEntryData } from '../Actions/logEntries';
 import Ad from '../Components/ad';
 
 class LogEntries extends Component {
-    constructor(props) {
-        super(props);
-        this.state ={
-            type: 'all'
-        }
-    }
+    state ={ type: 'all' }
     // use type prop to fetch specified log entry data
-    UNSAFE_componentWillMount(){
+    componentWillMount(){
         this.props.clearLogEntryData();
         const fetch = (type, id) => {
             switch (type) {
@@ -50,10 +45,7 @@ class LogEntries extends Component {
         this.setState({type: propType});
         if (propType !== 'all'){ propId = this.props.location.state.prop.id }
         fetch(propType, propId);
-    }
-    // auto scroll to top
-    componentDidMount() {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }
 
     render() {
