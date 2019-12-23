@@ -73,7 +73,7 @@ class ModalForm extends Component {
         // } else {
         return (
             <NavItem>
-                <NavLink href="#" onClick={(event) => this.handleLink(event)}>
+                <NavLink href="#" onClick={(event) => this.handleLink(event)} style={{color: "white"}}>
                     {this.props.form}
                 </NavLink>
                 <Modal isOpen={this.state.modal} toggle={this.modalToggle}>    
