@@ -1,58 +1,49 @@
-import React from 'react';
-import { Badge, UncontrolledDropdown, DropdownToggle,
-    DropdownMenu, DropdownItem } from 'reactstrap';
-import DynamicLink from './dynamicLink';
+import React from "react";
+import {
+  Badge,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
+import DynamicLink from "./dynamicLink";
 
-const SideBarItem = ({prop, type}) => {
-    let logEntries, surfers;
-    if (type === 'surf-spot') {
-        logEntries = prop.log_entries;
-        surfers = Array.from(new Set(logEntries.map(logEntry=>logEntry.user.id)))
-            .map(id=>{
-                return {
-                    id: id,
-                    slug: logEntries.find(logEntry=>logEntry.user.id===id).user.slug,
-                    name: logEntries.find(logEntry=>logEntry.user.id===id).user.name
-                }
-            })
-    }
+const SideBarItem = ({ prop, type }) => {
+  let logEntries, surfers;
+  if (type === "surf-spot") {
+    logEntries = prop.log_entries;
+    surfers = Array.from(
+      new Set(logEntries.map(logEntry => logEntry.user.id))
+    ).map(id => {
+      const user = logEntries.find(logEntry => logEntry.user.id === id).user;
+      return { id: id, slug: user.slug, name: user.name };
+    });
+  }
 
-    return (
-        <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle className="coral" nav caret>
-                <Badge pill>{prop.log_entries.length}</Badge>
-                {'  '} {prop.name}      
-            </DropdownToggle>
-            <DropdownMenu left="true">
-                <DynamicLink
-                    display={'log entries'}
-                    prop={prop}
-                    type={type}
-                />
-                <DropdownItem divider />
+  const list = type === "surf-spot" ? surfers : prop.surf_spots;
+  const linkType = type === "surf-spot" ? "surfer" : "surf-spot";
+  return (
+    <UncontrolledDropdown nav inNavbar>
+      <DropdownToggle className="coral" nav caret>
+        <Badge pill style={{marginRight: "10px"}}>{prop.log_entries.length}</Badge>
+        {prop.name}
+      </DropdownToggle>
+      <DropdownMenu left="true">
+        <DynamicLink display={"log entries"} prop={prop} type={type} />
+        <DropdownItem
+          header
+          className="coral"
+          style={{ backgroundColor: "#eeeeee" }}
+        >
+          {type === "surf-spot" ? "SURFERS" : "SURF SPOTS"}
+        </DropdownItem>
+        {list.map(item => {
+        return (
+          <DynamicLink display={"name"} prop={item} type={linkType} key={item.id} />
+        )})}
+      </DropdownMenu>
+    </UncontrolledDropdown>
+  );
+};
 
-                {type === 'surf-spot' ?
-                    <DropdownItem header>Surfers</DropdownItem>:
-                    <DropdownItem header>Surf Spots</DropdownItem>
-                }
-                {type === 'surf-spot' ? surfers.map((surfer)=> (
-                    <DynamicLink
-                        display={'name'}
-                        prop={surfer}
-                        type={'surfer'}
-                        key={surfer.id}
-                    />
-                )): prop.surf_spots.map((surfSpot)=> (
-                    <DynamicLink
-                        display={'name'}
-                        prop={surfSpot}
-                        type={'surf-spot'}
-                        key={surfSpot.id}
-                    />
-                ))}
-            </DropdownMenu>
-        </UncontrolledDropdown>
-    )
-}
-
-export default SideBarItem
+export default SideBarItem;
