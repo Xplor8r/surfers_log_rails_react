@@ -52,14 +52,14 @@ class LogEntries extends Component {
     render() {
         const {isMobile, logEntryData} = this.props;
         const {type} = this.state;
-        let header = 'Surf. Log. Share.';
+        let header = 'SURF. LOG. SHARE.';
         if (logEntryData.length > 0) {
             if (type === 'surfer'){
-                header = logEntryData[0].user.name;
+                header = logEntryData[0].user.name.toUpperCase();
             } else if (type === 'country') {
-                header = logEntryData[0].country.name;
+                header = logEntryData[0].country.name.toUpperCase();
             } else if (type === 'surf-spot') {
-                header = logEntryData[0].surf_spot.name;
+                header = logEntryData[0].surf_spot.name.toUpperCase();
             }
         } else {
             header = 'No Log Entries'
